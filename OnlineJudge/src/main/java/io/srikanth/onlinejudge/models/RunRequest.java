@@ -7,6 +7,7 @@ public class RunRequest {
 	private String contest_id;
 	private String problem_index;
 	private int testCases;
+	private double timeLimit;
 
 	public String getProblem_index() {
 		return problem_index;
@@ -48,11 +49,18 @@ public class RunRequest {
 		this.testCases = testCases;
 	}
 
+	public double getTimeLimit() {
+		return timeLimit;
+	}
+
+	public void setTimeLimit(double timeLimit) {
+		this.timeLimit = timeLimit;
+	}
+
 	@Override
 	public String toString() {
 		return "RunRequest [code=" + code + ", compiler=" + compiler + ", contest_id=" + contest_id + ", problem_index="
-				+ problem_index + ", testCases=" + testCases + "]";
+				+ problem_index + ", testCases=" + testCases + ", timeLimit=" + timeLimit + "]";
 	}
-
 
 }

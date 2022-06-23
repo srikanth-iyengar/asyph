@@ -42,6 +42,7 @@ public class CodeRunner {
 		StringBuilder run = new StringBuilder();
 		File codeFile;
 		String className;
+		run.append("timeout " + request.getTimeLimit() + " ");
 		switch (request.getCompiler()) {
 		case JAVA8:
 			request.setCode(matchPattern(request.getCode(), response.getToken()));
@@ -135,6 +136,10 @@ public class CodeRunner {
 				tests_passed = false;
 				response.setVerdict("RUNTIME_ERROR");
 				break;
+			} else if (exitCode == 124) {
+				tests_passed = false;
+				response.setVerdict("TIME_LIMIT_EXCEED");
+				break;
 			} else {
 				if (!contentEquals(new File(output), new File(participant_output))) {
 					tests_passed = false;
@@ -148,7 +153,6 @@ public class CodeRunner {
 		deleteFiles(codeFile, new File("participant/" + response.getToken() + ".out"), request.getCompiler(),
 				response.getToken());
 		requestRepository.save(response);
-//		logger.info(requestRepository.findById(response.getToken()).get());
 		logger.info("Verdict: " + response.getVerdict());
 	}
 
@@ -183,7 +187,6 @@ public class CodeRunner {
 	}
 
 	public void deleteFile(File file) {
-//		logger.info(file.getName());
 		file.delete();
 	}
 
