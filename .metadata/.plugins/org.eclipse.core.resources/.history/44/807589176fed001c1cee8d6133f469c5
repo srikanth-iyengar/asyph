@@ -1,0 +1,17 @@
+package io.srikanth.onlinejudge.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import io.srikanth.onlinejudge.models.RunRequest;
+
+@Controller
+@RequestMapping("/judge")
+public class MainController {
+
+	@PostMapping("/run")
+	public void runCode(RunRequest request) {
+		System.out.println(request);
+	}
+}

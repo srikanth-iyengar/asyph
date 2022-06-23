@@ -1,0 +1,185 @@
+package io.srikanth.onlinejudge.service;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+
+import io.srikanth.onlinejudge.models.RunRequest;
+import io.srikanth.onlinejudge.models.RunnerResponse;
+import io.srikanth.onlinejudge.utils.PatternMatcher;
+
+@Service
+public class CodeRunner {
+
+	final Logger log = LogManager.getLogger(CodeRunner.class);
+
+	public RunnerResponse initiateRequest(RunRequest request) throws IOException, InterruptedException {
+		RunnerResponse response = new RunnerResponse();
+		response.setToken(UUID.randomUUID().toString().replace("-", ""));
+		response.setVerdict("QUEUED");
+		return response;
+	}
+
+	@Async("processRunner")
+	public void run(RunRequest request, RunnerResponse response) throws IOException, InterruptedException {
+		StringBuilder compile = new StringBuilder();
+		StringBuilder run = new StringBuilder();
+		File f;
+		log.info(request);
+		switch (request.getCompiler()) {
+		case JAVA8:
+			request.setCode(matchPattern(request.getCode(), response.getToken()));
+			String className = "Main" + response.getToken();
+			f = new File("code/" + className + ".java");
+			compile.append("javac -d java_classes code/" + className);
+			run.append("java -cp java_classes Main");
+			break;
+		case JAVA11:
+			request.setCode(matchPattern(request.getCode(), response.getToken()));
+			String className = "Main" + response.getToken();
+			f = new File("code/" + className + ".java");
+			compile.append("javac -d java_classes code/" + className);
+			run.append("java -cp java_classes Main");
+			break;
+		case JAVA17:
+			request.setCode(matchPattern(request.getCode(), response.getToken()));
+			String className = "Main" + response.getToken();
+			f = new File("code/" + className + ".java");
+			compile.append("javac -d java_classes code/" + className);
+			run.append("java -cp java_classes Main");
+			break;
+		case CPP11:
+			request.setCode(matchPattern(request.getCode(), response.getToken()));
+			f = new File("code/Main.cpp");
+			compile.append("g++ code/Main.cpp -o code/Main" + response.getToken());
+			run.append("code/Main.out");
+			break;
+		case CPP14:
+			f = new File("code/Main.cpp");
+			compile.append("g++ code/Main.cpp -o code/Main" + response.getToken());
+			run.append("code/Main.out");
+			break;
+		case CPP17:
+			f = new File("code/Main.cpp");
+			compile.append("g++ code/Main.cpp -o code/Main" + response.getToken());
+			run.append("code/Main.out");
+			break;
+		case CPP20:
+			f = new File("code/Main.cpp");
+			compile.append("g++ code/Main.cpp -o code/Main" + response.getToken());
+			run.append("code/Main.out");
+			break;
+		case PYTHON2:
+			f = new File("code/Main.py");
+			run.append("python2 code/Main.py");
+			break;
+		case PYTHON3:
+			f = new File("code/Main.py");
+			run.append("python3 code/Main.py");
+			break;
+		case PYPY2:
+			f = new File("code/Main.py");
+			break;
+		case PYPY3:
+			f = new File("code/Main.py");
+			break;
+		default:
+			System.out.println("Default");
+			return;
+		}
+		f.createNewFile();
+		PrintWriter pw = new PrintWriter(f);
+		pw.write(request.getCode());
+		pw.close();
+		if (compile.length() != 0) {
+			ProcessBuilder builder = new ProcessBuilder("bash", "-c", compile.toString());
+			Process compiling = builder.start();
+			compiling.waitFor();
+			if (compiling.exitValue() != 0) {
+				response.setVerdict("COMPILATION_ERROR");
+				return;
+			}
+		}
+		response.setVerdict("RUNNING");
+		final String tc_dir = "testcases/contest_" + request.getContest_id() + "/" + request.getProblem_index() + "/";
+		boolean tests_passed = true;
+		for (int i = 0; i < request.getTestCases(); i++) {
+			String input = tc_dir + "test" + i + ".in";
+			String output = tc_dir + "test" + i + ".out";
+			String participant_output = "participant/" + response.getToken() + ".out";
+			run.append(" < " + input + " > " + participant_output);
+			log.info("Command: " + run);
+			Process program = new ProcessBuilder("bash", "-c", run.toString()).start();
+			program.waitFor();
+			int exitCode = program.exitValue();
+			if (exitCode == 1) {
+				tests_passed = false;
+				response.setVerdict("RUNTIME_ERROR");
+				break;
+			} else {
+				if (!contentEquals(new File(output), new File(participant_output))) {
+					tests_passed = false;
+					response.setVerdict("WRONG_ANSWER");
+					break;
+				}
+			}
+		}
+		if (tests_passed)
+			response.setVerdict("ACCEPTED");
+		deleteFile(f);
+		deleteFile(new File("participant/" + response.getToken() + ".out"));
+		log.info("Verdict: " + response.getVerdict());
+	}
+
+	public void deleteFile(File file) {
+		file.delete();
+	}
+
+	public boolean contentEquals(File f1, File f2) throws IOException {
+		try {
+			BufferedReader br1 = new BufferedReader(new FileReader(f1));
+			BufferedReader br2 = new BufferedReader(new FileReader(f2));
+			while (true) {
+				String s1 = br1.readLine();
+				String s2 = br2.readLine();
+				if (s1 == null && s2 == null) {
+					break;
+				}
+				s1 = s1.trim();
+				s2 = s2.trim();
+				if (!s1.equals(s2)) {
+					br1.close();
+					br2.close();
+					return false;
+				}
+			}
+			br1.close();
+			br2.close();
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return false;
+		}
+		return true;
+	}
+
+	public String matchPattern(String code, String token) {
+		Pattern JAVA_CLASS_NAME = Pattern.compile("(public class [a-z|A-Z|0-9]*)");
+		Matcher m = JAVA_CLASS_NAME.matcher(code);
+		StringBuilder sb = new StringBuilder();
+		String repString = "public class Main" + token;
+		if (m.find())
+			m.appendReplacement(sb, repString);
+		m.appendTail(sb);
+		return sb.toString();
+	}
+}

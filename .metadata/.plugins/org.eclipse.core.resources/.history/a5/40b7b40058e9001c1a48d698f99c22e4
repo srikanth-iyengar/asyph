@@ -1,0 +1,13 @@
+package io.srikanth.CatalogueMicroservice.models;
+
+import java.time.Instant;
+
+public class ProductGet {
+	public String id;
+	public Double price;
+	public String brand;
+//	public 
+	public void go() {
+		Instant fff = Instant.parse(brand)
+	}
+}

@@ -1,0 +1,8 @@
+package io.srikanth.onlinejudge.models;
+
+public enum Verdict {
+	ACCEPTED,
+	WRONG_ANSWER,
+	RUNTIME_ERROR,
+	
+}

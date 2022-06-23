@@ -1,0 +1,7 @@
+package io.srikanth.onlinejudge.configuration;
+
+
+@Configuration
+public class RedisConfiguration {
+	
+}

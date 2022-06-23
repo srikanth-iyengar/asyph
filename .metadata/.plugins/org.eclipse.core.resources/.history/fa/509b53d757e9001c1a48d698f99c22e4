@@ -1,0 +1,8 @@
+package io.srikanth.CatalogueMicroservice.models;
+
+public class ProductGet {
+	public String id;
+	public Double price;
+	public String brand;
+//	public 
+}

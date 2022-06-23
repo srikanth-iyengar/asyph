@@ -1,0 +1,5 @@
+package io.srikanth.onlinejudge.models;
+
+public enum Language {
+	JAVA11, JAVA8, CPP11, CPP14, CPP17, CPP20, PYTHON3, PYTHON2, PYPI3, PYPI2
+}

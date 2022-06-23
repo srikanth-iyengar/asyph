@@ -1,0 +1,10 @@
+package io.srikanth.onlinejudge.utils;
+
+import java.util.regex.Pattern;
+
+public class PatternMatcher {
+	public String matchPattern(String code) {
+		Pattern JAVA_CLASS_NAME = Pattern.compile(code);
+		return "";
+	}
+}

@@ -1,0 +1,7 @@
+package io.srikanth.onlinejudge.models;
+
+public class RunRequest {
+
+	private String code;
+	private Language compiler;
+}

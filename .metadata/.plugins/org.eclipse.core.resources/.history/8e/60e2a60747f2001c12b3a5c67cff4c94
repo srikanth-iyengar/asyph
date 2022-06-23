@@ -1,0 +1,13 @@
+package io.srikanth.onlinejudge.utils;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class PatternMatcher {
+	public String matchPattern(String code, String token) {
+		Pattern JAVA_CLASS_NAME = Pattern.compile("(?<=\\n|\\A)(?:public\\s)?(class|interface|enum)\\s([^\\n\\s]*)");
+		Matcher m = JAVA_CLASS_NAME.matcher(code);
+		
+		return "";
+	}
+}

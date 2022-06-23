@@ -1,0 +1,7 @@
+package io.srikanth.onlinejudge.utils;
+
+public class PatternMatcher {
+	public String matchPattern() {
+		return ""
+	}
+}

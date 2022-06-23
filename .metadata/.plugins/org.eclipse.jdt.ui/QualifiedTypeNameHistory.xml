@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.Table"/>
+    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.PrimaryKey"/>
+    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.Column"/>
+    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.CassandraType"/>
+    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.CassandraType.Name"/>
+    <fullyQualifiedTypeName name="io.srikanth.CatalogueMicroservice.models.ProductCategory"/>
+    <fullyQualifiedTypeName name="javax.websocket.server.ServerEndpoint"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="io.srikanth.onlinejudge.models.RunnerResponse"/>
+    <fullyQualifiedTypeName name="io.srikanth.onlinejudge.models.RunRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.AutoConfigureOrder"/>
+    <fullyQualifiedTypeName name="io.srikanth.onlinejudge.models.Language"/>
+    <fullyQualifiedTypeName name="java.util.UUID"/>
+    <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+    <fullyQualifiedTypeName name="org.springframework.scheduling.annotation.Async"/>
+    <fullyQualifiedTypeName name="java.lang.ProcessBuilder"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="ch.qos.logback.classic.Logger"/>
+    <fullyQualifiedTypeName name="org.springframework.scheduling.annotation.EnableAsync"/>
+    <fullyQualifiedTypeName name="io.srikanth.onlinejudge.OnlineJudgeApplication"/>
+    <fullyQualifiedTypeName name="org.apache.commons.io.FileUtils"/>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
+    <fullyQualifiedTypeName name="java.util.regex.Matcher"/>
+    <fullyQualifiedTypeName name="org.apache.logging.log4j.LogManager"/>
+    <fullyQualifiedTypeName name="org.apache.logging.log4j.Logger"/>
+    <fullyQualifiedTypeName name="io.srikanth.onlinejudge.utils.PatternMatcher"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+</qualifiedTypeNameHistroy>

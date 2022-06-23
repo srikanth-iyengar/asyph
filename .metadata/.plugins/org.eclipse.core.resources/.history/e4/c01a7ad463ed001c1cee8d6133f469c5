@@ -1,0 +1,6 @@
+package io.srikanth.onlinejudge.models;
+
+public class RunnerResponse {
+	private Verdict verdict;
+	private 
+}
