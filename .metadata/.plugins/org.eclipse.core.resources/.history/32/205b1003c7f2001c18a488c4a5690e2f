@@ -1,5 +1,0 @@
-package io.srikanth.onlinejudge.repository;
-
-public interface RequestRepository {
-
-}
