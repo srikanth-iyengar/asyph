@@ -28,6 +28,3 @@ To start the eureka server navigate to the AsyphDiscoveryServer directory and ru
 Now open https:localhost:8761 to see the eureka server configuration and registered server
 
 <img width="947" alt="image" src="https://user-images.githubusercontent.com/88551109/175354017-3971557c-82bd-4407-b114-4816c124082c.png">
-
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=800 height=800 src="https://edrawcloudpublicus.s3.amazonaws.com/viewer/self/2485624/share/2022-6-24/1656051012/main.svg"></iframe>
