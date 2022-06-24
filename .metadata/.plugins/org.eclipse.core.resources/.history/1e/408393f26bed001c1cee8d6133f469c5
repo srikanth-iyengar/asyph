@@ -1,8 +1,0 @@
-package io.srikanth.onlinejudge.controller;
-
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class MainController {
-	
-}

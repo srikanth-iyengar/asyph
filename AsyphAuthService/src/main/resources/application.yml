@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: Auth-Service
+server:
+  port: 8083
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: true
+  endpoint:
+    routes:
+      enabled: true

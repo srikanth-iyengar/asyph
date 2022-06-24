@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.srikanth.onlinejudge.models.JudgeRequest;
 import io.srikanth.onlinejudge.models.RunRequest;
-import io.srikanth.onlinejudge.models.RunnerResponse;
+import io.srikanth.onlinejudge.models.JudgeResponse;
 import io.srikanth.onlinejudge.service.CodeRunner;
 
 @RestController
@@ -20,11 +21,17 @@ public class MainController {
 	@Autowired
 	private CodeRunner runner;
 
+	@PostMapping("/judge")
+	public JudgeResponse judgeCode(@RequestBody JudgeRequest request) throws IOException, InterruptedException {
+		JudgeResponse response = runner.initiateRequest(request);
+		runner.runJudge(request, response);
+		return response;
+	}
+
 	@PostMapping("/run")
-	public RunnerResponse runCode(@RequestBody RunRequest request) throws IOException, InterruptedException {
-		logger.info("Running the code");
-		RunnerResponse response = runner.initiateRequest(request);
-		runner.run(request, response);
+	public JudgeResponse runCode(@RequestBody RunRequest request) {
+		JudgeResponse response = runner.initiateRunRequest(request);
+		runner.runner(request, response);
 		return response;
 	}
 }

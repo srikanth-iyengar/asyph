@@ -12,17 +12,28 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @SpringBootApplication
 @EnableAsync
 public class OnlineJudgeApplication {
-	
+
 	final Logger logger = LogManager.getLogger(OnlineJudgeApplication.class);
-	
-	@Bean(name = "processRunner")
+
+	@Bean(name = "codeJudger")
 	public TaskExecutor workExecutor() {
 		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-		threadPoolTaskExecutor.setThreadNamePrefix("Async-");
+		threadPoolTaskExecutor.setThreadNamePrefix("Judge-");
+		threadPoolTaskExecutor.setCorePoolSize(10);
+		threadPoolTaskExecutor.setMaxPoolSize(12);
+		threadPoolTaskExecutor.setQueueCapacity(600);
+		logger.info("Judge pool initialized");
+		return threadPoolTaskExecutor;
+	}
+
+	@Bean(name = "judgeRunner")
+	public TaskExecutor codeRunner() {
+		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+		threadPoolTaskExecutor.setThreadNamePrefix("Runner-");
 		threadPoolTaskExecutor.setCorePoolSize(3);
 		threadPoolTaskExecutor.setMaxPoolSize(6);
-		threadPoolTaskExecutor.setQueueCapacity(600);
-		logger.info("Async Enabled");
+		threadPoolTaskExecutor.setQueueCapacity(300);
+		logger.info("Runner pool initialized");
 		return threadPoolTaskExecutor;
 	}
 

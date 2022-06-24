@@ -1,21 +1,9 @@
 package io.srikanth.onlinejudge.models;
 
 public class RunRequest {
-
 	private String code;
 	private Language compiler;
-	private String contest_id;
-	private String problem_index;
-	private int testCases;
-	private double timeLimit;
-
-	public String getProblem_index() {
-		return problem_index;
-	}
-
-	public void setProblem_index(String problem_index) {
-		this.problem_index = problem_index;
-	}
+	private String input;
 
 	public String getCode() {
 		return code;
@@ -33,34 +21,12 @@ public class RunRequest {
 		this.compiler = compiler;
 	}
 
-	public String getContest_id() {
-		return contest_id;
+	public String getInput() {
+		return input;
 	}
 
-	public void setContest_id(String contest_id) {
-		this.contest_id = contest_id;
-	}
-
-	public int getTestCases() {
-		return testCases;
-	}
-
-	public void setTestCases(int testCases) {
-		this.testCases = testCases;
-	}
-
-	public double getTimeLimit() {
-		return timeLimit;
-	}
-
-	public void setTimeLimit(double timeLimit) {
-		this.timeLimit = timeLimit;
-	}
-
-	@Override
-	public String toString() {
-		return "RunRequest [code=" + code + ", compiler=" + compiler + ", contest_id=" + contest_id + ", problem_index="
-				+ problem_index + ", testCases=" + testCases + ", timeLimit=" + timeLimit + "]";
+	public void setInput(String input) {
+		this.input = input;
 	}
 
 }

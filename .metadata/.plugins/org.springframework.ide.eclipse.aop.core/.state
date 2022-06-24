@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="ASYPH"/>
-<aop-project name="CatalogueMicroservice"/>
+<aop-project name="UserMicroservice"/>
 <aop-project name="OnlineJudgeCompanion"/>
 <aop-project name="OnlineJudge"/>
+<aop-project name="AsyphDiscoveryServer"/>
 </aop-reference-model>

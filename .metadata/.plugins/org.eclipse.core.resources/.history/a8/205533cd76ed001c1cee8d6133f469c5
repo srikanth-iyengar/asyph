@@ -1,8 +1,0 @@
-package io.srikanth.onlinejudge.utils;
-
-import java.io.InputStream;
-import java.io.OutputStream;
-
-public class ProgramRunner extends Process{
-
-}

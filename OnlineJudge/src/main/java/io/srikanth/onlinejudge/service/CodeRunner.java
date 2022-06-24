@@ -15,9 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import io.srikanth.onlinejudge.models.JudgeRequest;
+import io.srikanth.onlinejudge.models.JudgeResponse;
 import io.srikanth.onlinejudge.models.Language;
 import io.srikanth.onlinejudge.models.RunRequest;
-import io.srikanth.onlinejudge.models.RunnerResponse;
 import io.srikanth.onlinejudge.repository.RequestRepository;
 
 @Service
@@ -28,16 +29,24 @@ public class CodeRunner {
 
 	final Logger logger = LogManager.getLogger(CodeRunner.class);
 
-	public RunnerResponse initiateRequest(RunRequest request) throws IOException, InterruptedException {
-		RunnerResponse response = new RunnerResponse();
+	public JudgeResponse initiateRequest(JudgeRequest request) throws IOException, InterruptedException {
+		JudgeResponse response = new JudgeResponse();
 		response.setToken(UUID.randomUUID().toString().replace("-", ""));
 		response.setVerdict("QUEUED");
+		response.setNote("Your program is in queue will be processed soon");
 		requestRepository.save(response);
 		return response;
 	}
 
-	@Async("processRunner")
-	public void run(RunRequest request, RunnerResponse response) throws IOException, InterruptedException {
+	public JudgeResponse initiateRunRequest(RunRequest request) {
+		JudgeResponse response = new JudgeResponse();
+		response.setToken(UUID.randomUUID().toString().replace("-", ""));
+		requestRepository.save(response);
+		return response;
+	}
+
+	@Async("codeJudger")
+	public void runJudge(JudgeRequest request, JudgeResponse response) throws IOException, InterruptedException {
 		StringBuilder compile = new StringBuilder();
 		StringBuilder run = new StringBuilder();
 		File codeFile;
@@ -135,25 +144,34 @@ public class CodeRunner {
 			if (exitCode == 1) {
 				tests_passed = false;
 				response.setVerdict("RUNTIME_ERROR");
+				response.setNote("Runtime Error in testcase " + (i + 1));
 				break;
 			} else if (exitCode == 124) {
 				tests_passed = false;
 				response.setVerdict("TIME_LIMIT_EXCEED");
+				response.setNote("Time limit exceed in testcase" + (i + 1));
 				break;
 			} else {
 				if (!contentEquals(new File(output), new File(participant_output))) {
 					tests_passed = false;
 					response.setVerdict("WRONG_ANSWER");
+					response.setNote("Wrong Answer in testcase " + (i + 1));
 					break;
 				}
 			}
 		}
-		if (tests_passed)
+		if (tests_passed) {
 			response.setVerdict("ACCEPTED");
+			response.setNote("All testcases passed");
+		}
 		deleteFiles(codeFile, new File("participant/" + response.getToken() + ".out"), request.getCompiler(),
 				response.getToken());
 		requestRepository.save(response);
 		logger.info("Verdict: " + response.getVerdict());
+	}
+	
+	public void runner(RunRequest request, JudgeResponse response) {
+		
 	}
 
 	public void deleteFiles(File code, File participantOutput, Language language, String token) {

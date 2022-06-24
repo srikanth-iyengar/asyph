@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.Table"/>
-    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.PrimaryKey"/>
     <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.Column"/>
-    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.CassandraType"/>
-    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.CassandraType.Name"/>
     <fullyQualifiedTypeName name="io.srikanth.CatalogueMicroservice.models.ProductCategory"/>
     <fullyQualifiedTypeName name="javax.websocket.server.ServerEndpoint"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
@@ -19,7 +15,6 @@
     <fullyQualifiedTypeName name="org.springframework.scheduling.annotation.Async"/>
     <fullyQualifiedTypeName name="java.lang.ProcessBuilder"/>
     <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
     <fullyQualifiedTypeName name="ch.qos.logback.classic.Logger"/>
     <fullyQualifiedTypeName name="org.springframework.scheduling.annotation.EnableAsync"/>
     <fullyQualifiedTypeName name="io.srikanth.onlinejudge.OnlineJudgeApplication"/>
@@ -32,4 +27,22 @@
     <fullyQualifiedTypeName name="org.apache.logging.log4j.Logger"/>
     <fullyQualifiedTypeName name="io.srikanth.onlinejudge.utils.PatternMatcher"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.data.redis.RedisProperties.Lettuce"/>
+    <fullyQualifiedTypeName name="org.springframework.data.redis.connection.RedisStandaloneConfiguration"/>
+    <fullyQualifiedTypeName name="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.CrudRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.data.redis.core.RedisHash"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="io.srikanth.onlinejudge.repository.RequestRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.data.annotation.Id"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+    <fullyQualifiedTypeName name="org.springframework.data.redis.core.RedisTemplate"/>
+    <fullyQualifiedTypeName name="java.io.Serializable"/>
+    <fullyQualifiedTypeName name="org.springframework.data.redis.core.TimeToLive"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.server.EnableEurekaServer"/>
+    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.Table"/>
+    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.PrimaryKey"/>
+    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.CassandraType"/>
+    <fullyQualifiedTypeName name="org.springframework.data.cassandra.core.mapping.CassandraType.Name"/>
 </qualifiedTypeNameHistroy>

@@ -5,7 +5,51 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2022-06-23T12:51:27Z</updated>
+  <updated>2022-06-24T04:00:00Z</updated>
+  <entry>
+    <title>Spring Tips: Learn Spring for GraphQL (the last two episodes: parts 7 and 8)</title>
+    <link rel="alternate" href="https://spring.io/blog/2022/06/23/spring-tips-learn-spring-for-graphql-the-last-two-episodes-parts-7-and-8" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2022-06-24:4841</id>
+    <updated>2022-06-24T04:00:00Z</updated>
+    <content type="html">&lt;p&gt;Hi, Spring fans! In thi^^^ these installments, we continue our series introducing the Spring for GraphQL project. This series features Spring for GraphQL lead &lt;a href="https://twitter.com/rstoya05"&gt;Rossen Stoyanchev (@rstoya05)&lt;/a&gt; - whose work you may know from basically everything in the wide and wonderful world of Springdom having to do with the web (HTTP, RSocket, WebSockets, GraphQL, JSF, MVC, etc) - and GraphQL Java engine founder and lead &lt;a href="https://twitter.com/andimarek"&gt;Andi Marek (@andimarek)&lt;/a&gt; and of course yours truly, Spring Developer Advocate &lt;a href="https://twitter.com/starbuxman"&gt;Josh Long (@starbuxman)&lt;/a&gt;. It provides an in-depth look at all things Spring for GraphQL.&lt;/p&gt;
+&lt;p&gt;This week I&amp;rsquo;m publishing two new installments. &lt;/p&gt;
+&lt;p&gt;The first episode this week is part seven of eight, focusing on how to secure a Spring for GraphQL application with Spring Security. &lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/1nZcHJaQgUY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;The last episode this week is part eight of eight, the final episode of the series introducing the new and novel Spring for GraphQL project, looks at how to integrate Spring for GraphQL and Spring Data. &lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/ahBjkmkltcc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;This continues the series we started last week, with episodes one and two, which I recap here: &lt;/p&gt;
+&lt;p&gt;In this first installment, we look at the basics of using the GraphQL Java engine that underpins Spring for GraphQL. &lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/gvIqFDNGgwU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;In this second installment, we look at using the Spring for GraphQL component model by writing queries. &lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/zltMcbnAxyA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;Episode three of a series, looks at batching requests with Spring for GraphQL&amp;rsquo;s &lt;code&gt;@BatchMapping&lt;/code&gt; support. This mechanism in turn builds on Facebook&amp;rsquo;s DataLoader facility. &lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/a1vZcSaicmY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;In episode four of a series, we look at how to make a change with mutations. This is one of my favorite parts about GraphQL - it&amp;rsquo;s plain, pragmatic, and - most importantly - obvious! &lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/QJAkvhG7cos" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;The fifth episode, part five of the series, looks at using GraphQL subscriptions to stream data in a way that is agnostic of the supported transport protocols: SSE, WebSockets, and RSocket. In this episode, we look at the RSocket support in particular. &lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/2paPPY9AmPw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;The fifth episode, part six of the series, looks at using the Spring for GraphQL clients to talk to HTTP, WebSocket, and RSocket-powered GraphQL services. &lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/EE-5xItDfsg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;I&amp;rsquo;m going to be releasing every episode of this series very quickly, over the next week or two. I&amp;rsquo;ve already recorded and mostly finished producing eight episodes. I&amp;rsquo;m working on producing a ninth, and that&amp;rsquo;ll be that! A complete introduction to all things Spring for GraphQL. These are of course part of the usual &lt;a href="https://www.youtube.com/watch?v=zltMcbnAxyA&amp;list=PLgGXSWYM2FpPw8rV0tZoMiJYSCiLhPnOc"&gt;&lt;code&gt;Spring Tips&lt;/code&gt;&lt;/a&gt; playlist on YouTube, but also part of the &lt;a href="https://www.youtube.com/watch?v=gvIqFDNGgwU&amp;list=PLgGXSWYM2FpNRPDQnAGfAHxMl3zUG2Run"&gt;&lt;code&gt;Learn Spring for GraphQL with Josh Long&lt;/code&gt;&lt;/a&gt; playlist. Follow that one to be notified of any new episodes! &lt;/p&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
+  <entry>
+    <title>A Bootiful Podcast: JVM and .NET legend Ted Neward on... just about everything</title>
+    <link rel="alternate" href="https://spring.io/blog/2022/06/23/a-bootiful-podcast-jvm-and-net-legend-ted-neward-on-just-about-everything" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2022-06-23:4840</id>
+    <updated>2022-06-23T17:00:00Z</updated>
+    <content type="html">&lt;p&gt;Hi, Spring fans! In this installment, &lt;a href="https://twitter.com/starbuxman"&gt;I (@starbuxman)&lt;/a&gt; talk to my old friend, world-famous polyglot and code curmudgeon, software philosopher, industry veteran, and legend of ecosystems aplenty, &lt;a href="https://twitter.com/tedneward"&gt;Ted Neward (@tedneward)&lt;/a&gt; &lt;/p&gt;
+&lt;iframe title="JVM and .NET legend Ted Neward on... just about everything " allowtransparency="true" height="150" width="100%" style="border: none; min-width: min(100%, 430px);" scrolling="no" data-name="pb-iframe-player" src="https://www.podbean.com/player-v2/?i=zgcag-125a169-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7"&gt;&lt;/iframe&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Spring Boot 2.7.1 available now</title>
     <link rel="alternate" href="https://spring.io/blog/2022/06/23/spring-boot-2-7-1-available-now" />
@@ -644,53 +688,6 @@ compile &amp;#39;org.springframework.cloud:spring-cloud-starter-netflix-eureka-c
     <updated>2022-06-09T15:00:00Z</updated>
     <content type="html">&lt;p&gt;Hi, Spring fans! In this installment, &lt;a href="https://twitter.com/starbuxman"&gt;Josh Long (@starbuxman)&lt;/a&gt; talks to Kubernetes legend and fellow Tanzu Developer Advocate &lt;a href="https://twitter.com/ciberkleid"&gt;Cora Iberkleid (@ciberkleid)&lt;/a&gt; about Kubernetes and Cartographer supply chains&lt;/p&gt;
 &lt;iframe title="Kubernetes legend and friend Cora Iberkleid on Tanzu, Cartographer, and more " allowtransparency="true" height="150" width="100%" style="border: none; min-width: min(100%, 430px);" scrolling="no" data-name="pb-iframe-player" src="https://www.podbean.com/player-v2/?i=eevfu-124764e-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7"&gt;&lt;/iframe&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Shell 2.1.0-M5 is now available</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/06/09/spring-shell-2-1-0-m5-is-now-available" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Janne Valkealahti</name>
-    </author>
-    <id>tag:spring.io,2022-06-09:4821</id>
-    <updated>2022-06-09T10:34:17Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I&amp;rsquo;m happy to announce that Spring Shell &lt;code&gt;2.1.0-M5&lt;/code&gt; has been released and is now available from &lt;a href="https://repo.spring.io/milestone"&gt;https://repo.spring.io/milestone&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Please see the &lt;a href="https://github.com/spring-projects/spring-shell/releases/tag/v2.1.0-M5"&gt;release notes&lt;/a&gt; for more details.&lt;/p&gt;
-&lt;p&gt;Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-shell/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-shell"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-shell/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-shell/docs/2.1.0-M4/site/reference/htmlsingle"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>This Week in Spring - June 7th, 2022</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/06/07/this-week-in-spring-june-7th-2022" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2022-06-07:4820</id>
-    <updated>2022-06-07T12:00:00Z</updated>
-    <content type="html">&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! I&amp;rsquo;ve just landed in tantalizing Toronto, Canada, for the SpringOne Tour Toronto show. I&amp;rsquo;m so excited to be here, at long last, after so long away from one of my favorite countries. I&amp;rsquo;ll be doing two talks - my usual, &lt;em&gt;Kubernetes Native Java&lt;/em&gt;, and a talk on building Kubernetes Controllers (a.k.a. &amp;ldquo;Operators&amp;rdquo;) using the official Kubernetes Java client, Spring Boot, and Spring Native with my amazing friend and teammate &lt;a href="@tiffanyfayj"&gt;Tiffany Jernigan&lt;/a&gt;, who you may recall was &lt;a href="https://bootifulpodcast.fm/#/episodes/28280dc4-c9ca-4229-8075-b4f63a4cb6c4"&gt;on the podcast not too long ago&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;After Toronto, I&amp;rsquo;m off to beautiful Berlin, Germany, for the &lt;a href="https://www.wearedevelopers.com/"&gt;We Are Developers show&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;If you&amp;rsquo;re at either show, don&amp;rsquo;t hesitate to say hi! &lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/06/02/spring-tips-learn-spring-for-graphql-parts-1-and-2-of-an-ongoing-series"&gt;Spring Tips: Learn Spring for GraphQL (parts 1 and 2 of an ongoing series)&lt;/a&gt; Hi Spring fans! I&amp;rsquo;ve put together a series of videos introducing all things Spring for GraphQL. The first two installments (of nine, I suspect) are available for your viewing pleasure on &lt;a href="https://bit.ly/spring-tips-playlist"&gt;YouTube&lt;/a&gt; as part of my usual &lt;a href="https://twitter.com/SpringTipsLive"&gt;@SpringTipsLive&lt;/a&gt; series.&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/06/02/a-bootiful-podcast-spring-i-o-founder-spring-trainer-and-community-legend-sergi-almar"&gt;A Bootiful Podcast: Spring I/O founder, Spring trainer, and community legend Sergi Almar&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;I did a version of the talk on Kubernetes controllers with my amazing teammate Cora Iberkleid at Spring IO a few weeks ago. Check it out: &lt;a href="https://www.youtube.com/watch?v=5IROOj7sLKg"&gt;Bootiful Kubernetes Operators by Cora Iberkleid and Josh Long @ Spring I/O 2022 - YouTube&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/698432138/0/baeldung~Expose-GraphQL-Field-with-Different-Name"&gt;Expose GraphQL Field with Different Name&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/698617368/0/baeldung~Configure-JWT-Authentication-for-OpenAPI"&gt;Configure JWT Authentication for OpenAPI&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/698346088/0/baeldung~Difference-Between-Expose-and-Ports-in-Docker-Compose"&gt;Difference Between Expose and Ports in Docker Compose&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/698679718/0/baeldung~Disabling-Keycloak-Security-in-Spring-Boot"&gt;Disabling Keycloak Security in Spring Boot&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/698374228/0/baeldung~Docker-Compose-Restart-Policies"&gt;Docker Compose Restart Policies&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/698163668/0/baeldung~Docker-Registry-API-Listing-Images-and-Tags"&gt;Docker Registry API – Listing Images and Tags&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/698519006/0/baeldung~How-to-Mock-HttpServletRequest"&gt;How to Mock HttpServletRequest&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://www.springcloud.io/post/2022-06/jdbctemplate-id/#gsc.tab=0"&gt;How to get the auto-incremented ID when using JdbcTemplate&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://medium.com/@ankithahjpgowda/log-request-and-responses-of-rest-apis-in-springboot-c13f9bc7903f"&gt;Log request and responses of REST APIs in SpringBoot, by Ankitha Gowda &lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/06/02/spring-cloud-stream-applications-2021-1-2-ga-release-now-available"&gt;Spring Cloud Stream Applications 2021.1.2 GA Release now available&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Want a taste of the main themes from the Spring team this year? And, in a small way, a preview of what will be coming at SpringOne 2022? Check out this year&amp;rsquo;s &lt;a href="https://www.youtube.com/watch?v=3xjjXq4EEx4&amp;t=4090s"&gt;Spring I/O 2022 Welcome and Keynote on YouTube&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/698449908/0/baeldung~Tomcat-Warning-To-Prevent-a-Memory-Leak-the-JDBC-Driver-Has-Been-Forcibly-Unregistered"&gt;Tomcat Warning “To Prevent a Memory Leak, the JDBC Driver Has Been Forcibly Unregistered”&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://springbootlearning.medium.com/writing-tests-is-never-a-mistake-78d7054f56ba"&gt;Writing tests is NEVER a mistake…&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>
