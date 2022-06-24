@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: User-Service
+  data:
+    cassandra:
+      port: 9042
+      keyspace-name: user_database
+      schema-action: CREATE_IF_NOT_EXISTS
+      connection:
+        connect-timeout: 10s
+        init-query-timeout: 10s
+      local-datacenter: datacenter1
+server:
+  port: 8082
