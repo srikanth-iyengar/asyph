@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Table("app_user")
 public class AppUser implements UserDetails {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@PrimaryKey
@@ -36,6 +36,14 @@ public class AppUser implements UserDetails {
 	@CassandraType(type = Name.TEXT)
 	private String lastName;
 
+	@Column("is_locked")
+	@CassandraType(type = Name.TEXT)
+	private Boolean isLocked;
+
+	@Column("is_enabled")
+	@CassandraType(type = Name.TEXT)
+	private Boolean isEnabled;
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
@@ -44,26 +52,22 @@ public class AppUser implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
+		return !isLocked;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return isEnabled;
 	}
 
 	public String getUsername() {
