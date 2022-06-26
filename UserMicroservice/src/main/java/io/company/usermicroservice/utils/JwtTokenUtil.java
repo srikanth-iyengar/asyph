@@ -14,7 +14,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class JwtTokenUtil {
-	private String SECRET_KEY = "secret";
+
+	private String SECRET_KEY = "y8lc9QJhCqOcuZIMfUJBEMH7s4c2YZ5HrjvAlMq0abtKU17C05seBaXEdQP89mF9XfALe7imN16lvGv1";
 
 	public String extractUsername(String token) {
 		return extractClaim(token, Claims::getSubject);
@@ -24,13 +25,13 @@ public class JwtTokenUtil {
 		return extractClaim(token, Claims::getExpiration);
 	}
 
-	public <T> T extractClaim(String token, Function<Claims, T> claimResolver) {
-		final Claims claim = extractAllClaims(token);
-		return claimResolver.apply(claim);
+	public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+		final Claims claims = extractAllClaims(token);
+		return claimsResolver.apply(claims);
 	}
 
 	private Claims extractAllClaims(String token) {
-		return Jwts.parser().setSigningKey("SECRET_KEY").parseClaimsJws(token).getBody();
+		return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
 	}
 
 	private Boolean isTokenExpired(String token) {
@@ -42,9 +43,10 @@ public class JwtTokenUtil {
 		return createToken(claims, userDetails.getUsername());
 	}
 
-	private String createToken(Map<String, Object> claims, String username) {
-		return Jwts.builder().setClaims(claims).setSubject(username).setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 1000 + 60 * 60 * 10))
+	private String createToken(Map<String, Object> claims, String subject) {
+
+		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
 				.signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
 	}
 
@@ -52,5 +54,4 @@ public class JwtTokenUtil {
 		final String username = extractUsername(token);
 		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 	}
-
 }

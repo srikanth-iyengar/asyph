@@ -1,5 +1,6 @@
 package io.company.usermicroservice.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.data.cassandra.core.mapping.CassandraType;
@@ -44,15 +45,30 @@ public class AppUser implements UserDetails {
 	@CassandraType(type = Name.TEXT)
 	private Boolean isEnabled;
 
+	public AppUser() {
+
+	}
+
+	private AppUser(Builder builder) {
+		setEmailId(builder.emailId);
+		setUsername(builder.username);
+		setPassword(builder.password);
+		setFirstName(builder.firstName);
+		setLastName(builder.lastName);
+		setIsLocked(false);
+		setIsEnabled(true);
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<GrantedAuthority> authorities = new ArrayList<>();
+		return authorities;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -62,7 +78,7 @@ public class AppUser implements UserDetails {
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -70,6 +86,7 @@ public class AppUser implements UserDetails {
 		return isEnabled;
 	}
 
+	@Override
 	public String getUsername() {
 		return username;
 	}
@@ -110,10 +127,63 @@ public class AppUser implements UserDetails {
 		this.lastName = lastName;
 	}
 
+	public Boolean getIsLocked() {
+		return isLocked;
+	}
+
+	public void setIsLocked(Boolean isLocked) {
+		this.isLocked = isLocked;
+	}
+
+	public Boolean getIsEnabled() {
+		return isEnabled;
+	}
+
+	public void setIsEnabled(Boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", emailId=" + emailId + ", password=" + password + ", firstName="
 				+ firstName + ", lastName=" + lastName + "]";
+	}
+
+	public static class Builder {
+		public String username, emailId, password, firstName, lastName;
+
+		public Builder() {
+
+		}
+
+		public Builder username(String username) {
+			this.username = username;
+			return this;
+		}
+
+		public Builder emailId(String emailId) {
+			this.emailId = emailId;
+			return this;
+		}
+
+		public Builder password(String password) {
+			this.password = password;
+			return this;
+		}
+
+		public Builder firstName(String firstName) {
+			this.firstName = firstName;
+			return this;
+		}
+
+		public Builder lastName(String lastName) {
+			this.lastName = lastName;
+			return this;
+		}
+
+		public AppUser build() {
+			return new AppUser(this);
+		}
 	}
 
 }

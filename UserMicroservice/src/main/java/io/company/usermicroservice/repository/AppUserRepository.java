@@ -6,4 +6,5 @@ import io.company.usermicroservice.models.AppUser;
 
 public interface AppUserRepository extends CassandraRepository<AppUser, String> {
 	AppUser findByUsername(String username);
+	AppUser findByEmailId(String emailId);
 }
