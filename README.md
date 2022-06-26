@@ -1,5 +1,11 @@
 # OnlineJudge
 
+Microservice Architecture of Online Judge
+
+![service_architecture](https://user-images.githubusercontent.com/88551109/175817787-66b97d29-8842-4e30-8ec9-b722b8c5150d.png)
+
+Following is the database configuration steps </br>
+
 Redis Configuration
 
 ```YAML
