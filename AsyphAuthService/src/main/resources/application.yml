@@ -1,6 +1,15 @@
 spring:
   application:
     name: Auth-Service
+  data:
+    cassandra:
+      port: 9042
+      keyspace-name: user_database
+      schema-action: CREATE_IF_NOT_EXISTS
+      connection:
+        connect-timeout: 10s
+        init-query-timeout: 10s
+      local-datacenter: datacenter1
 server:
   port: 8083
 eureka:
@@ -15,7 +24,12 @@ management:
   endpoints:
     web:
       exposure:
-        include: true
+        include: '*'
+      cors:
+        allowed-methods: GET
+        allowed-origins: '*'
   endpoint:
     routes:
       enabled: true
+    health:
+      show-details: always
