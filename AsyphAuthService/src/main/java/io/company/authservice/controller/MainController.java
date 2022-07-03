@@ -44,7 +44,7 @@ public class MainController {
 		
 		Algorithm algorithm = Algorithm.HMAC512("secret".getBytes());
 		String jwtToken = JWT.create().withSubject(request.username)
-							.withExpiresAt(new Date(System.currentTimeMillis() + 1))
+							.withExpiresAt(new Date(System.currentTimeMillis() + 1000*60*60))
 							.withIssuer("Srikanth Iyengar")
 							.withClaim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 							.sign(algorithm);

@@ -26,8 +26,13 @@ public class AppUserService implements UserDetailsService {
 	}
 
 	public boolean registerUser(UserRegisterRequest request) {
-		AppUser alreadyRegister = appUserRepository.findByUsername(request.emailId);
+		AppUser alreadyRegister = appUserRepository.findByUsername(request.username);
 		// Checking if the user is already registered
+		if(alreadyRegister != null) {
+			return false;
+		}
+		
+		alreadyRegister = appUserRepository.findByEmailId(request.emailId);
 		if(alreadyRegister != null) {
 			return false;
 		}

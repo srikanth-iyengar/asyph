@@ -12,3 +12,26 @@ spring:
       local-datacenter: datacenter1
 server:
   port: 8082
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      cors:
+        allowed-methods: GET
+        allowed-origins: '*'
+  endpoint:
+    routes:
+      enabled: true
+    health:
+      show-details: always
+    metrics:
+      enabled: true
