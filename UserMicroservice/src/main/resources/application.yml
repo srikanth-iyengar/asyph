@@ -29,9 +29,5 @@ management:
         allowed-methods: GET
         allowed-origins: '*'
   endpoint:
-    routes:
-      enabled: true
     health:
       show-details: always
-    metrics:
-      enabled: true

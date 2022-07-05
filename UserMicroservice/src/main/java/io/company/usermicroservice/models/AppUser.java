@@ -1,18 +1,13 @@
 package io.company.usermicroservice.models;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.springframework.data.cassandra.core.mapping.CassandraType;
 import org.springframework.data.cassandra.core.mapping.CassandraType.Name;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Table("app_user")
-public class AppUser implements UserDetails {
+public class AppUser {
 
 	private static final long serialVersionUID = 1L;
 
@@ -59,34 +54,6 @@ public class AppUser implements UserDetails {
 		setIsEnabled(true);
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		ArrayList<GrantedAuthority> authorities = new ArrayList<>();
-		return authorities;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return !isLocked;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return isEnabled;
-	}
-
-	@Override
 	public String getUsername() {
 		return username;
 	}
@@ -147,6 +114,10 @@ public class AppUser implements UserDetails {
 	public String toString() {
 		return "User [username=" + username + ", emailId=" + emailId + ", password=" + password + ", firstName="
 				+ firstName + ", lastName=" + lastName + "]";
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public static class Builder {
