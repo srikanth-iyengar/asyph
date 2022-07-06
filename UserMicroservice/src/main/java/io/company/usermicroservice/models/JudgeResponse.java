@@ -1,12 +1,10 @@
-package io.srikanth.onlinejudge.models;
+package io.company.usermicroservice.models;
 
 import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.TimeToLive;
 
-@RedisHash("requests")
 public class JudgeResponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;

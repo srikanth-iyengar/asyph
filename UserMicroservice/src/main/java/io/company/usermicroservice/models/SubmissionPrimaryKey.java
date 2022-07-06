@@ -6,12 +6,14 @@ import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyClass;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
+
 
 @PrimaryKeyClass
 public class SubmissionPrimaryKey implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 2476442327647806151L;
 

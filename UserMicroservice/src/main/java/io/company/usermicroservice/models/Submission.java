@@ -46,6 +46,18 @@ public class Submission {
 	@CassandraType(type = Name.TEXT)
 	private Language language;
 
+	@Column("code")
+	@CassandraType(type = Name.TEXT)
+	private String code;
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getCode() {
+		return this.code;
+	}
+
 	public SubmissionPrimaryKey getKey() {
 		return key;
 	}
@@ -82,8 +94,8 @@ public class Submission {
 		return verdict;
 	}
 
-	public void setVerdict(String verdict) {
-		this.verdict = Verdict.valueOf(verdict);
+	public void setVerdict(Verdict verdict) {
+		this.verdict = verdict;
 	}
 
 	public String getNote() {
@@ -92,5 +104,21 @@ public class Submission {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
+
+	public Language getLanguage() {
+		return this.language;
+	}
+
+	public void setExecutionTime(Double executionTime) {
+		this.executionTime = executionTime;
+	}
+
+	public Double getExecutionTime() {
+		return this.executionTime;
 	}
 }

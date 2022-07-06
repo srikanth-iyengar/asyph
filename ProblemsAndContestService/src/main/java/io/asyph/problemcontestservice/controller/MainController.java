@@ -19,7 +19,6 @@ import io.asyph.problemcontestservice.service.ContestService;
 
 @RestController
 public class MainController {
-	
 	@Autowired
 	private ContestService contestService;
 	

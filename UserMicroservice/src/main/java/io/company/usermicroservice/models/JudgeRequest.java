@@ -1,4 +1,6 @@
-package io.srikanth.onlinejudge.models;
+package io.company.usermicroservice.models;
+
+
 
 public class JudgeRequest extends Request{
 	private String contestId;
@@ -45,4 +47,3 @@ public class JudgeRequest extends Request{
 	}
 
 }
-

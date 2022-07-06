@@ -1,18 +1,28 @@
 package io.company.usermicroservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import io.company.usermicroservice.models.AppUser;
+import io.company.usermicroservice.models.JudgeRequest;
+import io.company.usermicroservice.models.JudgeResponse;
+import io.company.usermicroservice.models.Submission;
 import io.company.usermicroservice.models.UserRegisterRequest;
 import io.company.usermicroservice.repository.AppUserRepository;
+import reactor.core.publisher.Mono;
 
 @Service
 public class AppUserService {
 
 	@Autowired
 	private AppUserRepository appUserRepository;
+
+	@Autowired 
+	private WebClient.Builder webClientBuilder;
+
 
 	public boolean registerUser(UserRegisterRequest request) {
 		AppUser alreadyRegister = appUserRepository.findByUsername(request.emailId);
@@ -31,5 +41,28 @@ public class AppUserService {
 				.build();
 		appUserRepository.save(user);
 		return true;
+	}
+
+	public JudgeResponse submitCodeToJudge(Submission request) {
+		JudgeRequest requestBody = new JudgeRequest();
+		requestBody.setCode(request.getCode());
+		requestBody.setProblemId(request.getProblemId());
+		requestBody.setTestCases(1);
+		requestBody.setTimeLimit(2);
+		requestBody.setCompiler(request.getLanguage().toString());
+		requestBody.setContestId(request.getContestId());
+		JudgeResponse response = webClientBuilder.build()
+			.post()
+			.uri("http://online-judge/judge")
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(Mono.just(requestBody), JudgeRequest.class)
+			.retrieve()
+			.bodyToMono(JudgeResponse.class)
+			.block();
+		request.getKey().setId(response.getToken());
+		request.setVerdict(response.getVerdict());
+		request.setNote(response.getNote());
+		request.setExecutionTime(response.getExecutionTime());
+		return response;
 	}
 }

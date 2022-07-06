@@ -1,4 +1,5 @@
-package io.srikanth.onlinejudge.models;
+package io.company.usermicroservice.models;
+
 
 public class RunRequest extends Request {
 	
