@@ -1,5 +1,7 @@
 package io.company.usermicroservice.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,6 +14,7 @@ import io.company.usermicroservice.models.JudgeResponse;
 import io.company.usermicroservice.models.Submission;
 import io.company.usermicroservice.models.UserRegisterRequest;
 import io.company.usermicroservice.repository.AppUserRepository;
+import io.company.usermicroservice.repository.SubmissionRepository;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -23,6 +26,8 @@ public class AppUserService {
 	@Autowired 
 	private WebClient.Builder webClientBuilder;
 
+	@Autowired
+	private SubmissionRepository submissionRepository;
 
 	public boolean registerUser(UserRegisterRequest request) {
 		AppUser alreadyRegister = appUserRepository.findByUsername(request.emailId);
@@ -43,7 +48,7 @@ public class AppUserService {
 		return true;
 	}
 
-	public JudgeResponse submitCodeToJudge(Submission request) {
+	public Submission submitCodeToJudge(Submission request) {
 		JudgeRequest requestBody = new JudgeRequest();
 		requestBody.setCode(request.getCode());
 		requestBody.setProblemId(request.getProblemId());
@@ -63,6 +68,15 @@ public class AppUserService {
 		request.setVerdict(response.getVerdict());
 		request.setNote(response.getNote());
 		request.setExecutionTime(response.getExecutionTime());
-		return response;
+		submissionRepository.save(request);
+		return request;
+	}
+
+	public List<Submission> getSubmissionByUsername(String username) {
+		return submissionRepository.findByKeyUsername(username);
+	}
+
+	public List<Submission> getInContestSubmissions(String username, String contestId) {
+		return submissionRepository.findByKeyUsernameAndContestId(username, contestId);
 	}
 }
