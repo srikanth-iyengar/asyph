@@ -41,13 +41,17 @@ public class Problems {
 	private String problemStatement;
 
 	private Problems(Builder builder) {
-		setContestId(contestId);
+		setContestId(builder.contestId);
 		setMemoryLimit(builder.memoryLimit);
 		setProblemId();
 		setProblemName(builder.problemName);
 		setProblemStatement(builder.problemStatement);
 		setTestCases(builder.testCases);
 		setTimeLimit(builder.timeLimit);
+	}
+
+	public Problems() {
+
 	}
 
 	public static class Builder {

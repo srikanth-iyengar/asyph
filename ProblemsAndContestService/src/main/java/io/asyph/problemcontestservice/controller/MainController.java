@@ -18,6 +18,7 @@ import io.asyph.problemcontestservice.models.CreateContestRequest;
 import io.asyph.problemcontestservice.models.CreateProblem;
 import io.asyph.problemcontestservice.models.Problems;
 import io.asyph.problemcontestservice.models.RescheduleContestRequest;
+import io.asyph.problemcontestservice.models.UpdateProblem;
 import io.asyph.problemcontestservice.service.ContestService;
 import io.asyph.problemcontestservice.service.ProblemsService;
 
@@ -30,7 +31,7 @@ public class MainController {
 	private ProblemsService problemsService;
 
 	@PostMapping("/create-contest")
-	public String createContest(@RequestBody CreateContestRequest request) {
+	public Contest createContest(@RequestBody CreateContestRequest request) {
 		return contestService.createContest(request);
 	}
 
@@ -68,7 +69,7 @@ public class MainController {
 		return status;
 	}
 
-	@DeleteMapping("delete-problem")
+	@DeleteMapping("/delete-problem")
 	public void deleteProblem(@RequestParam String problemId, @RequestParam String contestId) {
 		problemsService.deleteProblem(problemId, contestId);
 	}
@@ -76,5 +77,15 @@ public class MainController {
 	@DeleteMapping("/delete-test-cases")
 	public void deleteTestCase(@RequestParam String problemId, @RequestParam String contestId) {
 		problemsService.deleteTestCases(problemId, contestId);
+	}
+
+	@PostMapping("/update-problem")
+	public Problems updateProblem(@RequestBody UpdateProblem request) {
+		return problemsService.updateProblem(request);
+	}
+	
+	@GetMapping("/get-problem/{problemId}")
+	public Problems getProblem(@PathVariable String problemId) {
+		return problemsService.getProblem(problemId);
 	}
 }

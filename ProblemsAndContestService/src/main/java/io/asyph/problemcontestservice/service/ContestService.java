@@ -30,14 +30,14 @@ public class ContestService {
 	@SuppressWarnings("unused")
 	private final Logger logger = LogManager.getLogger(ContestService.class);
 
-	public String createContest(CreateContestRequest request) {
+	public Contest createContest(CreateContestRequest request) {
 		if (!canCreate(request.contestName)) {
-			return "NA";
+			return new Contest();
 		}
 		Contest contest = new Contest.Builder(request.username).contestName(request.contestName).endTime(request.endTime)
 				.startTime(request.startTime).build();
 		contestRepository.save(contest);
-		return contest.getContestId();
+		return contest;
 	}
 
 	public void deleteContest(String id) {

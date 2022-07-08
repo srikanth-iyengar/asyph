@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import io.company.usermicroservice.models.AppUser;
 import io.company.usermicroservice.models.JudgeRequest;
 import io.company.usermicroservice.models.JudgeResponse;
+import io.company.usermicroservice.models.Problems;
 import io.company.usermicroservice.models.Submission;
 import io.company.usermicroservice.models.UserRegisterRequest;
 import io.company.usermicroservice.repository.AppUserRepository;
@@ -48,12 +49,26 @@ public class AppUserService {
 		return true;
 	}
 
+	private Problems fetchProblem(String id) {
+		Problems problem = webClientBuilder.build()
+			.get()
+			.uri("http://problem-contest-service/get-problem/"+id)
+			.retrieve()
+			.bodyToMono(Problems.class)
+			.block();
+		return problem;
+	}
+
 	public Submission submitCodeToJudge(Submission request) {
+		Problems problem = fetchProblem(request.getProblemId());
+		if(problem == null) {
+			return new Submission();
+		}
 		JudgeRequest requestBody = new JudgeRequest();
 		requestBody.setCode(request.getCode());
 		requestBody.setProblemId(request.getProblemId());
-		requestBody.setTestCases(1);
-		requestBody.setTimeLimit(2);
+		requestBody.setTestCases(problem.getTestCases());
+		requestBody.setTimeLimit(problem.getTimeLimit());
 		requestBody.setCompiler(request.getLanguage().toString());
 		requestBody.setContestId(request.getContestId());
 		JudgeResponse response = webClientBuilder.build()

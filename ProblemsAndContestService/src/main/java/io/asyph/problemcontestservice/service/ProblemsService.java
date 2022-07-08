@@ -22,8 +22,14 @@ public class ProblemsService {
 	@Autowired
 	private WebClient.Builder webClientBuilder;
 
+
+	public Problems getProblem(String problemId) {
+		return problemRepository.findById(problemId).get();
+	}
+
 	public Problems createProblem(CreateProblem request) {
 		Problems problem = new Problems.Builder(request.contestId, request.problemName).build();
+		System.out.println(request.contestId);
 		problemRepository.save(problem);
 		return problem;
 	}
