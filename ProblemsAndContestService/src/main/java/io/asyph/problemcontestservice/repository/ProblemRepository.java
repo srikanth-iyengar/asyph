@@ -1,8 +1,8 @@
 package io.asyph.problemcontestservice.repository;
 
+import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 
@@ -12,5 +12,5 @@ public interface ProblemRepository extends CassandraRepository<Problems, String>
 	Optional<Problems> findByProblemId(String problemId);
 	
 	@AllowFiltering
-	Optional<Problem> findByContestId(String contestId);
+	List<Problems> findByContestId(String contestId);
 }

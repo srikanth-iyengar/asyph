@@ -20,4 +20,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: https://eureka-server-deadcoder11u2.herokuapp.com/eureka/

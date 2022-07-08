@@ -50,18 +50,14 @@ public class Problems {
 		setTimeLimit(builder.timeLimit);
 	}
 
-	static class Builder {
+	public static class Builder {
 		String problemName, contestId, problemStatement;
 		Integer testCases;
 		Double timeLimit, memoryLimit;
 
-		public Builder() {
-
-		}
-
-		public Builder problemId(String problemName) {
+		public Builder(String contestId, String problemName) {
+			this.contestId = contestId;
 			this.problemName = problemName;
-			return this;
 		}
 
 		public Builder contestId(String contestId) {
@@ -87,6 +83,10 @@ public class Problems {
 		public Builder memoryLimit(Double memoryLimit) {
 			this.memoryLimit = memoryLimit;
 			return this;
+		}
+		
+		public Problems build() {
+			return new Problems(this);
 		}
 	}
 
@@ -145,4 +145,5 @@ public class Problems {
 	public void setProblemStatement(String problemStatement) {
 		this.problemStatement = problemStatement;
 	}
+
 }

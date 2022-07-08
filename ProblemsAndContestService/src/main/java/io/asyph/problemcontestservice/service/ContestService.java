@@ -10,14 +10,22 @@ import org.springframework.stereotype.Service;
 
 import io.asyph.problemcontestservice.models.Contest;
 import io.asyph.problemcontestservice.models.CreateContestRequest;
+import io.asyph.problemcontestservice.models.Problems;
 import io.asyph.problemcontestservice.models.RescheduleContestRequest;
 import io.asyph.problemcontestservice.repository.ContestRepository;
+import io.asyph.problemcontestservice.repository.ProblemRepository;
 
 @Service
 public class ContestService {
 
 	@Autowired
 	private ContestRepository contestRepository;
+
+	@Autowired
+	private ProblemRepository problemRepository;
+
+	@Autowired
+	private ProblemsService problemsService;
 
 	@SuppressWarnings("unused")
 	private final Logger logger = LogManager.getLogger(ContestService.class);
@@ -35,6 +43,10 @@ public class ContestService {
 	public void deleteContest(String id) {
 		Contest contest = contestRepository.findByContestId(id).get();
 		contestRepository.delete(contest);
+		List<Problems> problemsList = problemRepository.findByContestId(id);
+		problemsList.forEach(problem -> {
+			problemsService.deleteProblem(problem.getProblemId(), id);
+		});
 	}
 
 	public Boolean canCreate(String request) {
