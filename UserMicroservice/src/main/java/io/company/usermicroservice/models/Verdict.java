@@ -8,5 +8,6 @@ public enum Verdict {
     MEMORY_LIMIT_EXCEED,
     PLAGARIZED,
     QUEUED,
-    RUNNING
+    RUNNING,
+    IGNORED
 }

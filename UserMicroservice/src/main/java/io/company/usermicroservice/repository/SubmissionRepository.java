@@ -14,4 +14,7 @@ public interface SubmissionRepository extends CassandraRepository<Submission, Su
 
 	@AllowFiltering
 	List<Submission> findByKeyUsernameAndContestId(String key, String contestId);
+
+	@AllowFiltering
+	Submission findByKeyId(String id);
 }

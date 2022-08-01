@@ -14,6 +14,7 @@ import io.company.usermicroservice.models.JudgeResponse;
 import io.company.usermicroservice.models.Problems;
 import io.company.usermicroservice.models.Submission;
 import io.company.usermicroservice.models.UserRegisterRequest;
+import io.company.usermicroservice.models.Verdict;
 import io.company.usermicroservice.repository.AppUserRepository;
 import io.company.usermicroservice.repository.SubmissionRepository;
 import reactor.core.publisher.Mono;
@@ -24,7 +25,7 @@ public class AppUserService {
 	@Autowired
 	private AppUserRepository appUserRepository;
 
-	@Autowired 
+	@Autowired
 	private WebClient.Builder webClientBuilder;
 
 	@Autowired
@@ -52,7 +53,7 @@ public class AppUserService {
 	private Problems fetchProblem(String id) {
 		Problems problem = webClientBuilder.build()
 			.get()
-			.uri("http://problem-contest-service/get-problem/"+id)
+			.uri("http://PROBLEM-CONTEST-SERVICE/get-problem/"+id)
 			.retrieve()
 			.bodyToMono(Problems.class)
 			.block();
@@ -63,6 +64,13 @@ public class AppUserService {
 		Problems problem = fetchProblem(request.getProblemId());
 		if(problem == null) {
 			return new Submission();
+		}
+		String username = request.getKey().getUsername();
+		AppUser user = appUserRepository.findByUsername(username);
+		if(user == null) {
+			request.setVerdict(Verdict.valueOf("IGNORED"));
+			request.setNote("USER NOT FOUND. PLEASE REGISTER TO SUBMIT CODE");
+			return request;
 		}
 		JudgeRequest requestBody = new JudgeRequest();
 		requestBody.setCode(request.getCode());
@@ -93,5 +101,13 @@ public class AppUserService {
 
 	public List<Submission> getInContestSubmissions(String username, String contestId) {
 		return submissionRepository.findByKeyUsernameAndContestId(username, contestId);
+	}
+
+	public void updateSubmission(JudgeResponse response) {
+		Submission submission = submissionRepository.findByKeyId(response.getToken());
+		submission.setVerdict(response.getVerdict());
+		submission.setNote(response.getNote());
+		submission.setExecutionTime(response.getExecutionTime());
+		submissionRepository.save(submission);
 	}
 }

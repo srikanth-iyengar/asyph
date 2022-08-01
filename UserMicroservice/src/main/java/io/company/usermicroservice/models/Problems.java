@@ -1,6 +1,5 @@
 package io.company.usermicroservice.models;
 
-import com.datastax.oss.driver.api.core.uuid.Uuids;
 
 public class Problems {
 
@@ -17,7 +16,6 @@ public class Problems {
 	private Double memoryLimit;
 
 	private String problemStatement;
-
 
 	public Problems() {
 

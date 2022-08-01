@@ -4,10 +4,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
 @EnableAsync
@@ -37,6 +39,21 @@ public class OnlineJudgeApplication {
 		return threadPoolTaskExecutor;
 	}
 
+	@Bean(name = "sendSubmissionStatus")
+	public TaskExecutor sendSubmissionStatus() {
+		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+		threadPoolTaskExecutor.setThreadNamePrefix("SubmissionUpdate-");
+		threadPoolTaskExecutor.setCorePoolSize(10);
+		threadPoolTaskExecutor.setMaxPoolSize(12);
+		threadPoolTaskExecutor.setQueueCapacity(600);
+		return threadPoolTaskExecutor;
+	}
+
+	@Bean
+	@LoadBalanced
+	public WebClient.Builder getWebClientBuilder() {
+		return WebClient.builder();
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineJudgeApplication.class, args);
 	}

@@ -30,6 +30,9 @@ public class CodeRunner {
 	@Autowired
 	public RequestRepository requestRepository;
 
+    @Autowired 
+    private ApiCallsService apiCallsService;
+
 	final Logger logger = LogManager.getLogger(CodeRunner.class);
 
 	public JudgeResponse initiateRequest(JudgeRequest request) throws IOException, InterruptedException {
@@ -65,6 +68,7 @@ public class CodeRunner {
 						response.getToken());
 				response.setVerdict("COMPILATION_ERROR");
 				requestRepository.save(response);
+                apiCallsService.sendDataToUserService(response);
 				return;
 			}
 		}
@@ -115,6 +119,8 @@ public class CodeRunner {
 		deleteFiles(codeFile, new File("participant/" + response.getToken() + ".out"), request.getCompiler(),
 				response.getToken());
 		requestRepository.save(response);
+        apiCallsService.sendDataToUserService(response);
+        
 		// logger.info("Verdict: " + response.getVerdict());
 	}
 

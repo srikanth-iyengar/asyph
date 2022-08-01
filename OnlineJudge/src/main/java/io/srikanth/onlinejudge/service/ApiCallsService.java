@@ -6,12 +6,29 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientException;
+
+import io.srikanth.onlinejudge.models.JudgeResponse;
+import reactor.core.publisher.Mono;
 
 @Service
 public class ApiCallsService {
+
+	@Autowired
+	private WebClient.Builder webClientBuilder;
+
 	static final String baseDir = "testcases/";
+	/*
+	 *This is the utility functions that unzip the testcases and saves the file in 
+	 *the correct directory
+	 */
+	/**START OF UNZIP CODE**/
 	public String saveTestCases(MultipartFile file, String problemId, String contestId) throws Exception {
 		File destDir = new File(baseDir+"contest_"+contestId+"/" + problemId +"/");
 		ZipInputStream zips = new ZipInputStream(file.getInputStream());
@@ -57,5 +74,26 @@ public class ApiCallsService {
 		String command = "rm -rf testcases/contest_" + contestId + "/" + problemId;
 		ProcessBuilder builder = new ProcessBuilder("bash", "-c", command);
 		builder.start();
+	}
+	/**END OF UNZIP CODE**/
+
+	/**This is function that sends the status of the submission to the user microservice**/
+	@Async("sendSubmissionStatus")
+	public void sendDataToUserService(JudgeResponse response) {
+		try {
+			webClientBuilder.build()
+				.put()
+				.uri("http://USER-SERVICE/update-submission")
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(Mono.just(response), JudgeResponse.class)
+				.retrieve()
+				.bodyToMono(String.class)
+				.block();
+		}
+		catch(Exception e) {
+			System.out.println("Exception occured");
+			return;
+		}
+		System.out.println("DataUpdated");
 	}
 }
