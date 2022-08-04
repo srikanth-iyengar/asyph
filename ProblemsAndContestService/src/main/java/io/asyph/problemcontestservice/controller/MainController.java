@@ -1,5 +1,6 @@
 package io.asyph.problemcontestservice.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,5 +88,10 @@ public class MainController {
 	@GetMapping("/get-problem/{problemId}")
 	public Problems getProblem(@PathVariable String problemId) {
 		return problemsService.getProblem(problemId);
+	}
+
+	@GetMapping("/get-all-contest")
+	public List<Contest> getAllContest() {
+		return contestService.getListedContest();
 	}
 }

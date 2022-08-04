@@ -74,4 +74,9 @@ public class ContestService {
 		contestRepository.save(contest);
 		return contest;
 	}
+
+	public List<Contest> getListedContest() {
+		return contestRepository.findByUnlisted(Boolean.valueOf(false));
+	}
+
 }

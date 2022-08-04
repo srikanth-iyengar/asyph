@@ -10,8 +10,21 @@ spring:
         connect-timeout: 10s
         init-query-timeout: 10s
       local-datacenter: datacenter1
+
 server:
   port: 8083
+
+
+zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
+  routes:
+    problems-and-contest:
+      path: /problems-and-contest/**
+      service-id: PROBLEM-CONTEST-SERVICE
+      url: http://localhost:8084
+
 eureka:
   instance:
     prefer-ip-address: true
@@ -20,16 +33,23 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: https://eureka-server-deadcoder11u2.herokuapp.com/eureka/
+
 management:
   endpoints:
     web:
       exposure:
         include: '*'
       cors:
-        allowed-methods: GET
+        allowed-methods: POST
         allowed-origins: '*'
   endpoint:
     routes:
       enabled: true
     health:
       show-details: always
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          netflix: trace

@@ -20,5 +20,7 @@ public interface ContestRepository extends CassandraRepository<Contest, String> 
 
 	@AllowFiltering
 	List<Contest> findByCreatedBy(String createdBy);
-
+	
+	@AllowFiltering
+	List<Contest> findByUnlisted(Boolean unlisted);
 }

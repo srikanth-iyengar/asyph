@@ -149,7 +149,7 @@ public class AppUser implements UserDetails {
 	}
 
 	public void setRole(String role) {
-		this.role = Role.valueOf("USER");
+		this.role = Role.valueOf(role);
 	}
 
 	public Role getRole() {
