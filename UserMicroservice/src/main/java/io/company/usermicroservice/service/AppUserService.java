@@ -13,6 +13,7 @@ import io.company.usermicroservice.models.JudgeRequest;
 import io.company.usermicroservice.models.JudgeResponse;
 import io.company.usermicroservice.models.Problems;
 import io.company.usermicroservice.models.Submission;
+import io.company.usermicroservice.models.UpdateLeaderboard;
 import io.company.usermicroservice.models.UserRegisterRequest;
 import io.company.usermicroservice.models.Verdict;
 import io.company.usermicroservice.repository.AppUserRepository;
@@ -109,5 +110,13 @@ public class AppUserService {
 		submission.setNote(response.getNote());
 		submission.setExecutionTime(response.getExecutionTime());
 		submissionRepository.save(submission);
+		if(response.getVerdict().equals(Verdict.COMPILATION_ERROR)) return;
+		UpdateLeaderboard leaderboard = new UpdateLeaderboard(submission.getKey().getUsername(), submission.getProblemId(), submission.getContestId(), submission.getVerdict().equals(Verdict.ACCEPTED));
+		webClientBuilder.build()
+			.put()
+			.uri("http://PROBLEM-CONTEST-SERVICE/update-leaderboard")
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(Mono.just(leaderboard), UpdateLeaderboard.class)
+			.retrieve();
 	}
 }
