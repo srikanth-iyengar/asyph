@@ -8,10 +8,6 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 @UserDefinedType
 public class ProblemCache {
 
-    @Column(value = "problem_id")
-    @CassandraType(type = Name.TEXT)
-    private String problemId;
-
     @Column(value = "points")
     @CassandraType(type = Name.INT)
     private Integer points;
@@ -24,12 +20,11 @@ public class ProblemCache {
     @CassandraType(type = Name.BOOLEAN)
     private Boolean isAccepted;
 
-    public String getProblemId() {
-        return problemId;
+    public ProblemCache() {
+        this.points = 0;
+        this.wrongSubmission = 0;
     }
-    public void setProblemId(String problemId) {
-        this.problemId = problemId;
-    }
+
     public Integer getPoints() {
         return points;
     }

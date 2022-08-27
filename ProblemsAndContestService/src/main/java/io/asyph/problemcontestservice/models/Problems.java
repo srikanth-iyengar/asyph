@@ -40,6 +40,12 @@ public class Problems {
 	@CassandraType(type = Name.TEXT)
 	private String problemStatement;
 
+
+	@Column("score")
+	@CassandraType(type = Name.INT)
+	private Integer score;
+
+
 	private Problems(Builder builder) {
 		setContestId(builder.contestId);
 		setMemoryLimit(builder.memoryLimit);
@@ -48,6 +54,7 @@ public class Problems {
 		setProblemStatement(builder.problemStatement);
 		setTestCases(builder.testCases);
 		setTimeLimit(builder.timeLimit);
+		setScore(builder.score);
 	}
 
 	public Problems() {
@@ -56,7 +63,7 @@ public class Problems {
 
 	public static class Builder {
 		String problemName, contestId, problemStatement;
-		Integer testCases;
+		Integer testCases, score;
 		Double timeLimit, memoryLimit;
 
 		public Builder(String contestId, String problemName) {
@@ -86,6 +93,11 @@ public class Problems {
 
 		public Builder memoryLimit(Double memoryLimit) {
 			this.memoryLimit = memoryLimit;
+			return this;
+		}
+
+		public Builder score(Integer score) {
+			this.score = score;
 			return this;
 		}
 		
@@ -150,4 +162,11 @@ public class Problems {
 		this.problemStatement = problemStatement;
 	}
 
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
 }

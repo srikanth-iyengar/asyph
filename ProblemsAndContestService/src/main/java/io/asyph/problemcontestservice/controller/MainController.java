@@ -19,8 +19,10 @@ import io.asyph.problemcontestservice.models.CreateContestRequest;
 import io.asyph.problemcontestservice.models.CreateProblem;
 import io.asyph.problemcontestservice.models.Problems;
 import io.asyph.problemcontestservice.models.RescheduleContestRequest;
+import io.asyph.problemcontestservice.models.UpdateLeaderboard;
 import io.asyph.problemcontestservice.models.UpdateProblem;
 import io.asyph.problemcontestservice.service.ContestService;
+import io.asyph.problemcontestservice.service.LeaderboardService;
 import io.asyph.problemcontestservice.service.ProblemsService;
 
 @RestController
@@ -30,6 +32,9 @@ public class MainController {
 
 	@Autowired
 	private ProblemsService problemsService;
+
+	@Autowired
+	private LeaderboardService leaderboardService;
 
 	@PostMapping("/create-contest")
 	public Contest createContest(@RequestBody CreateContestRequest request) throws SchedulerException{
@@ -93,5 +98,11 @@ public class MainController {
 	@GetMapping("/get-all-contest")
 	public List<Contest> getAllContest() {
 		return contestService.getListedContest();
+	}
+
+
+	@PutMapping("/update-leaderboard")
+	public void updateLeaderboard(@RequestBody UpdateLeaderboard leaderboard) {
+		leaderboardService.updateLeaderboard(leaderboard);
 	}
 }

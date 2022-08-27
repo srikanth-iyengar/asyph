@@ -29,4 +29,9 @@ public class LeaderboardKey {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public LeaderboardKey(String contestId, String username) {
+		this.contestId = contestId;
+		this.username = username;
+	}
 }
