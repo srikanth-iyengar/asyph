@@ -24,6 +24,10 @@ zuul:
       path: /problems-and-contest/**
       service-id: PROBLEM-CONTEST-SERVICE
       url: http://localhost:8084
+    user-service:
+      path: /user-data/**
+      service-id: USER-SERVICE
+      url: http://localhost:8082
 
 eureka:
   instance:
@@ -40,7 +44,7 @@ management:
       exposure:
         include: '*'
       cors:
-        allowed-methods: POST
+        allowed-methods: GET
         allowed-origins: '*'
   endpoint:
     routes:

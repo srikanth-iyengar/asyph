@@ -22,52 +22,55 @@ import io.company.authservice.service.AppUserService;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-	@Autowired
-	private JWTAuthorizationFilter authFilter;
+    @Autowired
+    private JWTAuthorizationFilter authFilter;
 
-	@Autowired
-	private AppUserService appUserService;
+    @Autowired
+    private AppUserService appUserService;
 
-	Logger logger = LogManager.getLogger(SecurityConfiguration.class);
+    Logger logger = LogManager.getLogger(SecurityConfiguration.class);
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests((authz) -> {
-			try {
-				authz.antMatchers("/problems-and-contest/**").hasAnyAuthority("ADMIN", "PROBLEM_SETTER");
-				authz.antMatchers("/user-microservice/update-submission").hasAnyAuthority("XYZ");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		http.cors().and().csrf().disable();
-		http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
-		logger.info("Security filter chain bean creation successfull");
-		return http.build();
-	}
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests((authz) -> {
+            try {
+                authz.antMatchers("/problems-and-contest/**", "/user-data/update-submission")
+                    .hasAnyAuthority("ADMIN", "PROBLEM_SETTER")
+                    .anyRequest()
+                    .authenticated()
+                    .and().sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        http.cors().and().csrf().disable();
+        http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
+        logger.info("Security filter chain bean creation successfull");
+        return http.build();
+    }
 
-	@Bean
-	public WebSecurityCustomizer webSecurityCustomizer() {
-		logger.info("Disabling security in some endpoints");
-		return (web) -> web.ignoring().antMatchers("/authenticate", "/register", "/actuator/**", "/problems-and-contest/get-all-contest");
-	}
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        logger.info("Disabling security in some endpoints");
+        return (web) -> web.ignoring().antMatchers("/authenticate", "/register", "/actuator/metrics/**", "/problems-and-contest/get-all-contest");
+    }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Bean
-	public DaoAuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-		provider.setPasswordEncoder(passwordEncoder());
-		provider.setUserDetailsService(appUserService);
-		return provider;
-	}
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService(appUserService);
+        return provider;
+    }
 
-
-	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
-		return authenticationConfiguration.getAuthenticationManager();
-	}
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 }
