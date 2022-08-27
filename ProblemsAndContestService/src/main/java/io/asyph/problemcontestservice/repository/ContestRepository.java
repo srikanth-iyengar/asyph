@@ -23,4 +23,7 @@ public interface ContestRepository extends CassandraRepository<Contest, String> 
 	
 	@AllowFiltering
 	List<Contest> findByUnlisted(Boolean unlisted);
+
+	@AllowFiltering
+	Contest findBySchedulerId(String id);
 }

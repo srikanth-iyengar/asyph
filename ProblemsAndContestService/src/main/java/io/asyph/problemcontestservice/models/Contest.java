@@ -33,6 +33,14 @@ public class Contest {
 	@CassandraType(type = Name.TEXT)
 	private ContestStatus status;
 
+	public String getSchedulerId() {
+		return schedulerId;
+	}
+
+	public void setSchedulerId(String schedulerId) {
+		this.schedulerId = schedulerId;
+	}
+
 	@Column("is_unlisted")
 	@CassandraType(type = Name.BOOLEAN)
 	private Boolean unlisted;
@@ -40,6 +48,10 @@ public class Contest {
 	@Column("created_by")
 	@CassandraType(type = Name.TEXT)
 	private String createdBy;
+
+	@Column("scheduler_id")
+	@CassandraType(type = Name.TEXT)
+	private String schedulerId;
 
 	private Contest(Builder builder) {
 		setContestId();
