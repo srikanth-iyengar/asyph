@@ -117,6 +117,7 @@ public class AppUserService {
 			.uri("http://PROBLEM-CONTEST-SERVICE/update-leaderboard")
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(Mono.just(leaderboard), UpdateLeaderboard.class)
-			.retrieve();
+			.retrieve().bodyToMono(Object.class).block();
+		System.out.println("Called contest");
 	}
 }
