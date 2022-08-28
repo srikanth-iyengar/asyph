@@ -23,6 +23,7 @@ public class ProblemCache {
     public ProblemCache() {
         this.points = 0;
         this.wrongSubmission = 0;
+        isAccepted = false;
     }
 
     public Integer getPoints() {

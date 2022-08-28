@@ -7,5 +7,7 @@ public class UpdateProblem {
 	public Double timeLimit;
 	public Integer testCases;
 	public String problemId;
+	public Integer score;
+
 }
 
