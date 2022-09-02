@@ -1,5 +1,6 @@
 package io.company.usermicroservice.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,7 @@ public class AppUserService {
 			request.setNote("USER NOT FOUND. PLEASE REGISTER TO SUBMIT CODE");
 			return request;
 		}
+		request.setSubmissionTime(LocalDateTime.now());
 		JudgeRequest requestBody = new JudgeRequest();
 		requestBody.setCode(request.getCode());
 		requestBody.setProblemId(request.getProblemId());
