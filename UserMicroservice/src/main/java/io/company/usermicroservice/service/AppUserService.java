@@ -120,6 +120,5 @@ public class AppUserService {
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(Mono.just(leaderboard), UpdateLeaderboard.class)
 			.retrieve().bodyToMono(Object.class).block();
-		System.out.println("Called contest");
 	}
 }
