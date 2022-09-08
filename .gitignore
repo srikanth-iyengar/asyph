@@ -37,5 +37,5 @@ build/
 
 
 ### ignore NODE MODULES ###
-./asyph-frontend/node_modules/
-./asyph-frontend/README.md
+./asyph-frontend/node_modules/**
+./asyph-frontend/build
