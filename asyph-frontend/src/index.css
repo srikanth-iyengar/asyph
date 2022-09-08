@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+
+body {
+  background: #110e0f;
+  font-family: 'Inter', sans-serif;
+}
+
+.headline-text {
+  color: #b8b4ca;
+}
+
+.logo {
+  border-radius: 50%;
+  display: flex;
+  float: left;
+  border: 2px solid #18233f;
+}
+
+.toolbar {
+  background-color: #18233f;
+}
+
+.profile-nav--bar {
+  position: absolute;
+  right: 0;
+  display: block;
+}
+
+.toolbar--notifications {
+  position: absolute;
+  right: 0;
+  display: block;
+}
+
+
+.website--title {
+  color: white;
+}
+
+
+.recent-contest--card {
+  max-width: 100%;
+  margin-top: 30px;
+  min-height: 100%;
+  padding: 10px, 10px, 10px, 10px;
+  /* color: #34485f; */
+}
+
+.recent-contest--card-contest {
+  background-color: #34485f;
+}
+
+.register-button {
+  background-color: #02acff;
+  color: #f9fcff; 
+}
+
+.top--rated {
+  margin-top: 1.8%;
+  margin-left: 1.6%;
+  padding: 1%, 1%, 1%, 1%;
+  color: #1f2846;
+  background: #1f2846;
+  min-width: 47%;
+  position: absolute;
+  right: 3%;
+}
+
+/* CSS HEX */
+.custom {
+  --big-stone: #18233f; 
+  --gray-suit: #b8b4ca;
+  --governor-bay: #3a52be;
+  --pelorous: #31b3bd;
+  --chambray: #38428a;
+  --mulberry: #ab3ea0;
+  --finn: #653250;
+  --finlandia: #5e655d;
+  --pickled-bluewood: #34485f;
+  --cod-gray: #110e0f;
+}
+
+.row--div {
+  display: flex;
+  flex-direction: row;
+}
+
+.row--col {
+  display: flex;
+  flex-direction: column;
+}
