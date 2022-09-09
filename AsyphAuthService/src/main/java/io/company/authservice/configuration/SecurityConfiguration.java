@@ -53,7 +53,7 @@ public class SecurityConfiguration {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         logger.info("Disabling security in some endpoints");
-        return (web) -> web.ignoring().antMatchers("/authenticate", "/register", "/actuator/metrics/**", "/problems-and-contest/get-all-contest");
+        return (web) -> web.ignoring().antMatchers("/authenticate", "/register", "/actuator/metrics/**", "/problems-and-contest/get-all-contest", "/activate");
     }
 
     @Bean

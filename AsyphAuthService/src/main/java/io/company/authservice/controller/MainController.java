@@ -1,5 +1,6 @@
 package io.company.authservice.controller;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.auth0.jwt.JWT;
@@ -56,6 +59,12 @@ public class MainController {
 	public Boolean registerUser(@RequestBody UserRegisterRequest request) {
 		Boolean response = appUserService.registerUser(request);
 		return response;
+	}
+
+	@PutMapping("/activate")
+	public Boolean activateAccount(@RequestParam String token,@RequestParam String username) {
+		System.out.println(token + " " + username);
+		return appUserService.checkToken(token, LocalDateTime.now(), username);
 	}
 	
 	@GetMapping("hello")

@@ -60,7 +60,7 @@ public class AppUser implements UserDetails {
 		setFirstName(builder.firstName);
 		setLastName(builder.lastName);
 		setIsLocked(false);
-		setIsEnabled(true);
+		setIsEnabled(false);
 		setRole("USER");
 	}
 

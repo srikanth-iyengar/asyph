@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @EnableEurekaClient
 @SpringBootApplication
 public class AsyphAuthServiceApplication {
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AsyphAuthServiceApplication.class, args);
 	}
