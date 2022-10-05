@@ -30,10 +30,6 @@ services:
 
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/88551109/175353609-de536193-4144-42ec-9b52-19ea3f92d211.png">
 
-To start the eureka server navigate to the AsyphDiscoveryServer directory and run ```BASH mvn spring-boot:run``` 
-Now open https:localhost:8761 to see the eureka server configuration and registered server
-
-<img width="947" alt="image" src="https://user-images.githubusercontent.com/88551109/175354017-3971557c-82bd-4407-b114-4816c124082c.png">
 
 
 
@@ -82,3 +78,9 @@ networks:
 Now open https://localhost:3000 to open the cassandra web client
 
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/88551109/175507845-9c210802-24bb-4754-8c7f-c9ef0ebcb7ee.png">
+
+
+To start the eureka server navigate to the AsyphDiscoveryServer directory and run ```mvn spring-boot:run``` 
+Now open https:localhost:8761 to see the eureka server configuration and registered server
+
+<img width="947" alt="image" src="https://user-images.githubusercontent.com/88551109/175354017-3971557c-82bd-4407-b114-4816c124082c.png">
