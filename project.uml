@@ -1,0 +1,47 @@
+@startuml
+
+class User {
+    - username :String
+    - emailId :String
+    - firstName :String
+    - lastName :String
+    - password :String
+    - register()
+    - changePassword()
+    - login()
+}
+
+
+class Problem {
+    - problemId :String
+    - problemName :String
+    - contestId :String
+    - timeLimit :Double
+    - memoryLimit: Double
+    - testCases :Integer
+    - problemStatement :String
+}
+
+
+class Contest {
+    - contestId :String
+    - contestName :String
+    - startTime :timestamp
+    - endTime :timestamp
+    - author :String
+    - unlisted :Boolean
+    - contestStatus :String
+}
+
+class Leaderboard {
+    - contestId :String
+}
+
+
+Contest <|- Problem
+Contest - User
+
+Contest *----* Leaderboard
+
+
+@enduml

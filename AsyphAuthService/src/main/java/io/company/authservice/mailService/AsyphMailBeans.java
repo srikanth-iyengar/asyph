@@ -14,7 +14,7 @@ public class AsyphMailBeans {
     @Value("${GMAIL_PASSWORD}")
     private String appPassword;
 
-    @Value("${ASYPH_ACCOUNG}")
+    @Value("${ASYPH_ACCOUNT}")
     private String emailId;
 
     @Bean
