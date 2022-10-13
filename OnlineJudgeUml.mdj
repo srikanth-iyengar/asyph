@@ -21476,8 +21476,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 240,
-											"top": 91,
+											"left": 272,
+											"top": 101,
 											"height": 13
 										},
 										{
@@ -21487,8 +21487,8 @@
 												"$ref": "AAAAAAGDt27qyMp1CpM="
 											},
 											"font": "Arial;13;1",
-											"left": 421,
-											"top": 178,
+											"left": 437,
+											"top": 183,
 											"width": 615,
 											"height": 13,
 											"text": "Online Judge"
@@ -21501,8 +21501,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 240,
-											"top": 91,
+											"left": 272,
+											"top": 101,
 											"width": 80.9072265625,
 											"height": 13,
 											"text": "(from Model2)"
@@ -21515,15 +21515,15 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 240,
-											"top": 91,
+											"left": 272,
+											"top": 101,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 416,
-									"top": 171,
+									"left": 432,
+									"top": 176,
 									"width": 625,
 									"height": 25,
 									"stereotypeLabel": {
@@ -21541,8 +21541,8 @@
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 416,
-							"top": 171,
+							"left": 432,
+							"top": 176,
 							"width": 625,
 							"height": 577,
 							"nameCompartment": {
@@ -23074,7 +23074,7 @@
 											"top": 675.5,
 											"width": 142,
 											"height": 13,
-											"text": "Update Contest Status"
+											"text": "Update Status"
 										},
 										{
 											"_type": "LabelView",
@@ -24357,9 +24357,9 @@
 							"font": "Arial;13;0",
 							"left": 1088,
 							"top": 632,
-							"width": 91.3134765625,
+							"width": 98.9052734375,
 							"height": 25,
-							"text": "<<Scheduler>"
+							"text": "<<Scheduler>>"
 						},
 						{
 							"_type": "UMLAssociationView",
@@ -25483,7 +25483,7 @@
 											"top": 571.5,
 											"width": 143,
 											"height": 13,
-											"text": "Give Contest Reminder"
+											"text": "Send Reminder"
 										},
 										{
 											"_type": "LabelView",
@@ -25514,7 +25514,7 @@
 									"font": "Arial;13;0",
 									"left": 760,
 									"top": 564.5,
-									"width": 153.75537109375,
+									"width": 153,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGDt3+oyoTOXw0="
@@ -25990,7 +25990,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGDt26CBL9HMro="
 					},
-					"name": "Update Contest Status",
+					"name": "Update Status",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -26173,7 +26173,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGDt26CBL9HMro="
 					},
-					"name": "Give Contest Reminder"
+					"name": "Send Reminder"
 				}
 			]
 		}
