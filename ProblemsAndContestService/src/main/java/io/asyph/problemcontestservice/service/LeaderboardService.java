@@ -2,8 +2,6 @@ package io.asyph.problemcontestservice.service;
 
 import java.util.Optional;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +23,6 @@ public class LeaderboardService {
 
 	final Integer PENALTY = -10;
 
-	final Logger logger = LogManager.getLogger(LeaderboardService.class);
-
 	public void updateLeaderboard(UpdateLeaderboard request) {
 		/*
 		 * Things that I want to do the update and recalculate the score
@@ -35,12 +31,10 @@ public class LeaderboardService {
 		 * 3. Accepted Or Not
 		 * 4. Username
 		 */
-		logger.info(request.toString());
 		LeaderboardKey key = new LeaderboardKey(request.contestId, request.username);
 		Optional<Leaderboard> entry = leaderboardRepository.findById(key);
 		Leaderboard rankList;
-		logger.info(entry.isEmpty());
-		if(entry.isEmpty()) {
+		if(entry == null) {
 			rankList = new Leaderboard(key);
 		}
 		else {
@@ -54,7 +48,7 @@ public class LeaderboardService {
 			rankList.getproblemsSolved().put(request.problemId, curSubmissionProblem);
 		}
 		if(!curSubmissionProblem.getIsAccepted() && request.isAccepted) {
-			rankList.setScore(rankList.getScore() + curSubmissionProblem.getPoints() + PENALTY * curSubmissionProblem.getWrongSubmission());
+			rankList.setScore(rankList.getScore() + curSubmissionProblem.getPoints() - PENALTY * curSubmissionProblem.getWrongSubmission());
 		}
 		if(request.isAccepted) {
 			curSubmissionProblem.setIsAccepted(true);
@@ -63,6 +57,5 @@ public class LeaderboardService {
 			curSubmissionProblem.setWrongSubmission(curSubmissionProblem.getWrongSubmission() + 1);
 		}
 		leaderboardRepository.save(rankList);
-		logger.info("Database Updated");
 	}
 }

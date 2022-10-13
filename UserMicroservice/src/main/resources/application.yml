@@ -1,6 +1,6 @@
 spring:
   application:
-    name: User-service
+    name: User-Service
   data:
     cassandra:
       port: 9042

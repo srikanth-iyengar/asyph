@@ -34,8 +34,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-
-### ignore NODE MODULES ###
-./asyph-frontend/node_modules
-./asyph-frontend/build

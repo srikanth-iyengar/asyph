@@ -41,7 +41,6 @@ public class ProblemsService {
 		problem.setProblemStatement(request.problemStatement);
 		problem.setMemoryLimit(request.memoryLimit);
 		problem.setProblemName(request.problemName);
-		problem.setScore(request.score);
 		problemRepository.save(problem);
 		return problem;
 	}

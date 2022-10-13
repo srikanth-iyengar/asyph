@@ -103,7 +103,6 @@ public class MainController {
 
 	@PutMapping("/update-leaderboard")
 	public void updateLeaderboard(@RequestBody UpdateLeaderboard leaderboard) {
-		System.out.println("Updating leaderboard");
 		leaderboardService.updateLeaderboard(leaderboard);
 	}
 }

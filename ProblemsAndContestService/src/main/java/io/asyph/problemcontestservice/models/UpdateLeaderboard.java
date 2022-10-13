@@ -5,9 +5,4 @@ public class UpdateLeaderboard {
 	public String problemId;
 	public String contestId;
 	public Boolean isAccepted;
-	
-
-	public String toString() {
-		return "{" + username + "," + problemId + "," + contestId + "," + isAccepted + "}";
-	}
 }

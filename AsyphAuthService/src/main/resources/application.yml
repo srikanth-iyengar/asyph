@@ -11,8 +11,6 @@ spring:
         init-query-timeout: 10s
       local-datacenter: datacenter1
 
-ASYPH_ACCOUNT: ksrikanth200212@gmail.com
-
 server:
   port: 8083
 
