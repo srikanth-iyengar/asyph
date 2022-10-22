@@ -25,6 +25,7 @@ public class CommandLineStartupRunner implements CommandLineRunner {
 		String secretKey = UUID.randomUUID().toString();
 		String password = new BCryptPasswordEncoder().encode(secretKey);
 		AppUser admin = new AppUser.Builder().firstName("srikanth").lastName("iyengar").username("srikanth_headquaters").password(password).emailId("ksrikanth200212@gmail.com").build();
+		admin.setIsEnabled(true);
 		admin.setRole("ADMIN");
 		appUserRepository.save(admin);
 
