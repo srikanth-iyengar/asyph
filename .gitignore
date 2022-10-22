@@ -39,3 +39,12 @@ build/
 ### ignore NODE MODULES ###
 ./asyph-frontend/node_modules
 ./asyph-frontend/build
+
+# Ignore Gradle build output directory
+build
+
+AsyphAuthService/.gradle/
+OnlineJudge/.gradle/
+UserMicroservice/.gradle/
+ProblemsAndContestService/.gradle/
+
