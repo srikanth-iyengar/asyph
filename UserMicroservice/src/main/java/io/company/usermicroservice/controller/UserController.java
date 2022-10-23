@@ -33,6 +33,10 @@ public class UserController {
 
 	final Logger logger = LogManager.getLogger(UserController.class);
 
+	@GetMapping("/ping")
+	public String ping() {
+		return "PONG";
+	}
 	@PostMapping("/submit-code")
 	public Submission submitCode(@RequestBody Submission request, @RequestHeader Map<String, String> headers) throws ForbiddenException {
 		String token = headers.get("authorization1").substring("Bearer ".length());

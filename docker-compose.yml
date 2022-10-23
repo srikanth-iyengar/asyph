@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  leader:
+    image: consul
+    container_name: leaderconsul
+    ports:
+      - 8500:8500
+    environment:
+      CONSUL_BIND_INTERFACE: eth0
+    networks:
+      consul_network:
+        ipv4_address: 99.0.0.5
+
+networks:
+  consul_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 99.0.0.0/16

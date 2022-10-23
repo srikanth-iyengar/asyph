@@ -1,0 +1,41 @@
+astra:
+  api:
+    application-token: AstraCS:hHNKwNOxwdiFQawkHTmtqMiN:00853bb27f487c5300a9a728b7d2f40934b9fddaa449389a082d6b3500677c38
+    database-id: d31c58a9-4607-4888-aca0-4b31cb9178cc
+    database-region: asia-south-1
+    cross-region-failback: false
+    grpc:
+      enabled: true
+  cql:
+    enabled: true
+    download-scb:
+      enabled: true
+    driver-config:
+      basic:
+        session-keyspace:
+          onlinejudge
+spring:
+  application:
+    name: User-Service
+  data:
+    cassandra:
+      schema-action: CREATE_IF_NOT_EXISTS
+
+server:
+  port: 8085
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      cors:
+        allowed-methods: GET
+        allowed-origins: '*'
+  endpoint:
+    routes:
+      enabled: true
+    health:
+      show-details: always

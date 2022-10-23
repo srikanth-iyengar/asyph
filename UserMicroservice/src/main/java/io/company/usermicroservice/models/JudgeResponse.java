@@ -3,7 +3,6 @@ package io.company.usermicroservice.models;
 import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.TimeToLive;
 
 public class JudgeResponse implements Serializable {
 
@@ -46,9 +45,6 @@ public class JudgeResponse implements Serializable {
 	public void setNote(String note) {
 		this.note = note;
 	}
-
-	@TimeToLive
-	public long timeToLive = 600;
 
 	@Override
 	public String toString() {
