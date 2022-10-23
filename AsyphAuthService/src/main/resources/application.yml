@@ -1,15 +1,25 @@
+astra:
+  api:
+    application-token: AstraCS:eBvppEAKKiepKjaHacUYOIXh:2417027c04add8004b802a60a0375cef2b6889fd83f37fd2c00602bad9f09346
+    database-id: fa917e0b-bbef-4d30-8557-bfa830d92d4f
+    database-region: asia-south-1
+    cross-region-failback: false
+    grpc:
+      enabled: true
+  cql:
+    enabled: true
+    download-scb:
+      enabled: true
+    driver-config:
+      basic:
+        session-keyspace:
+          onlinejudge
 spring:
   application:
     name: Auth-Service
   data:
     cassandra:
-      port: 9042
-      keyspace-name: user_database
       schema-action: CREATE_IF_NOT_EXISTS
-      connection:
-        connect-timeout: 10s
-        init-query-timeout: 10s
-      local-datacenter: datacenter1
 
 ASYPH_ACCOUNT: ksrikanth200212@gmail.com
 

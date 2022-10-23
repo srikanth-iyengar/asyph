@@ -7,6 +7,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -24,13 +25,18 @@ public class ApiCallsService {
 	private WebClient.Builder webClientBuilder;
 
 	static final String baseDir = "testcases/";
+
+
+	
+	@Value("${environment.prod}")
+	private Boolean production;
 	/*
 	 *This is the utility functions that unzip the testcases and saves the file in 
 	 *the correct directory
 	 */
 	/**START OF UNZIP CODE**/
 	public String saveTestCases(MultipartFile file, String problemId, String contestId) throws Exception {
-		File destDir = new File(baseDir+"contest_"+contestId+"/" + problemId +"/");
+		File destDir = new File((production ? "~/" : "") + baseDir+"contest_"+contestId+"/" + problemId +"/");
 		ZipInputStream zips = new ZipInputStream(file.getInputStream());
 		byte buffer[] = new byte[1024];
 		ZipEntry zipEntry = zips.getNextEntry();
