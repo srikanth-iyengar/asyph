@@ -1,8 +1,8 @@
 astra:
   api:
-    application-token: AstraCS:eBvppEAKKiepKjaHacUYOIXh:2417027c04add8004b802a60a0375cef2b6889fd83f37fd2c00602bad9f09346
-    database-id: fa917e0b-bbef-4d30-8557-bfa830d92d4f
-    database-region: asia-south-1
+    application-token: ${application-token}
+    database-id: ${db-id}
+    database-region: ${db-region} 
     cross-region-failback: false
     grpc:
       enabled: true
@@ -16,12 +16,31 @@ astra:
           onlinejudge
 spring:
   application:
-    name: User-service
+    name: Auth-Service
   data:
     cassandra:
       schema-action: CREATE_IF_NOT_EXISTS
+
+ASYPH_ACCOUNT: ${email_id}
+
 server:
-  port: 8082
+  port: 8083
+
+
+zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
+  routes:
+    problems-and-contest:
+      path: /problems-and-contest/**
+      service-id: PROBLEM-CONTEST-SERVICE
+      url: http://localhost:8084
+    user-service:
+      path: /user-data/**
+      service-id: USER-SERVICE
+      url: http://localhost:8082
+
 eureka:
   instance:
     prefer-ip-address: true
@@ -30,6 +49,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: https://eureka-server-deadcoder11u2.herokuapp.com/eureka/
+
 management:
   endpoints:
     web:
@@ -39,5 +59,13 @@ management:
         allowed-methods: GET
         allowed-origins: '*'
   endpoint:
+    routes:
+      enabled: true
     health:
       show-details: always
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          netflix: trace
