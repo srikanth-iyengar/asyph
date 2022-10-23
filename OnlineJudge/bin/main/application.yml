@@ -5,6 +5,8 @@ spring:
     consul:
       host: localhost
       port: 8500
+environment:
+  prod: true
 server:
   port: 8081
 eureka:

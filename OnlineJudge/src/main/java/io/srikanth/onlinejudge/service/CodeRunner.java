@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,8 @@ public class CodeRunner {
 	@Autowired
 	public RequestRepository requestRepository;
 
+	@Value("${environment.prod}")
+	private Boolean production;
     @Autowired 
     private ApiCallsService apiCallsService;
 
@@ -64,7 +67,7 @@ public class CodeRunner {
 			Process compiling = builder.start();
 			compiling.waitFor();
 			if (compiling.exitValue() != 0) {
-				deleteFiles(codeFile, new File("participant/" + response.getToken() + ".out"), request.getCompiler(),
+				deleteFiles(codeFile, new File((production ? "~/" : "") + "participant/" + response.getToken() + ".out"), request.getCompiler(),
 						response.getToken());
 				response.setVerdict("COMPILATION_ERROR");
 				requestRepository.save(response);
@@ -74,7 +77,7 @@ public class CodeRunner {
 		}
 		response.setVerdict("RUNNING");
 		requestRepository.save(response);
-		final String tc_dir = "testcases/contest_" + request.getContestId() + "/" + request.getProblemId() + "/";
+		final String tc_dir = (production ? "~/" : "") + "testcases/contest_" + request.getContestId() + "/" + request.getProblemId() + "/";
 		boolean tests_passed = true;
 		Double executionTime = 0.0;
 		for (int i = 0; i < request.getTestCases(); i++) {
@@ -135,52 +138,52 @@ public class CodeRunner {
 			case JAVA8:
 				request.setCode(matchPattern(request.getCode(), response.getToken()));
 				className = "Main" + response.getToken();
-				codeFile = new File("code/" + className + ".java");
-				compile.append("javac -d java_classes code/" + className + ".java");
-				run.append("java -cp java_classes " + className);
+				codeFile = new File((production ? "~/" : "") + "code/" + className + ".java");
+				compile.append("javac -d" + (production ? "~/" : "") + "java_classes code/" + className + ".java");
+				run.append("java -cp "+ (production ? "~/" : "") + "java_classes " + className);
 				break;
 			case JAVA11:
 				request.setCode(matchPattern(request.getCode(), response.getToken()));
 				className = "Main" + response.getToken();
-				codeFile = new File("code/" + className + ".java");
-				compile.append("javac -d java_classes code/" + className + ".java");
-				run.append("java -cp java_classes " + className);
+				codeFile = new File((production ? "~/" : "") + "code/" + className + ".java");
+				compile.append("javac -d" + (production ? "~/" : "") + "java_classes code/" + className + ".java");
+				run.append("java -cp "+ (production ? "~/" : "") + "java_classes " + className);
 				break;
 			case JAVA17:
 				request.setCode(matchPattern(request.getCode(), response.getToken()));
 				className = "Main" + response.getToken();
-				codeFile = new File("code/" + className + ".java");
-				compile.append("javac -d java_classes code/" + className + ".java");
-				run.append("java -cp java_classes " + className);
+				codeFile = new File((production ? "~/" : "") + "code/" + className + ".java");
+				compile.append("javac -d" + (production ? "~/" : "") + "java_classes code/" + className + ".java");
+				run.append("java -cp "+ (production ? "~/" : "") + "java_classes " + className);
 				break;
 			case CPP11:
 				request.setCode(matchPattern(request.getCode(), response.getToken()));
-				codeFile = new File("code/Main.cpp");
-				compile.append("g++ code/Main.cpp -o code/Main" + response.getToken());
+				codeFile = new File((production ? "~/" : "") + "code/Main" + response.getToken() + ".cpp");
+				compile.append("g++ " + (production ? "~/" : "") + "code/Main" + response.getToken() + ".cpp -o code/Main" + response.getToken());
 				run.append("code/Main" + response.getToken());
 				break;
 			case CPP14:
-				codeFile = new File("code/Main.cpp");
-				compile.append("g++ code/Main.cpp -o code/Main" + response.getToken());
+				codeFile = new File((production ? "~/" : "") + "code/Main" + response.getToken() + ".cpp");
+				compile.append("g++ " + (production ? "~/" : "") + "code/Main" + response.getToken() + ".cpp -o code/Main" + response.getToken());
 				run.append("code/Main" + response.getToken());
 				break;
 			case CPP17:
-				codeFile = new File("code/Main.cpp");
-				compile.append("g++ code/Main.cpp -o code/Main" + response.getToken());
+				codeFile = new File((production ? "~/" : "") + "code/Main" + response.getToken() + ".cpp");
+				compile.append("g++ " + (production ? "~/" : "") + "code/Main" + response.getToken() + ".cpp -o code/Main" + response.getToken());
 				run.append("code/Main" + response.getToken());
 				break;
 			case CPP20:
-				codeFile = new File("code/Main.cpp");
-				compile.append("g++ code/Main.cpp -o code/Main" + response.getToken());
+				codeFile = new File((production ? "~/" : "") + "code/Main" + response.getToken() + ".cpp");
+				compile.append("g++ " + (production ? "~/" : "") + "code/Main" + response.getToken() + ".cpp -o code/Main" + response.getToken());
 				run.append("code/Main" + response.getToken());
 				break;
 			case PYTHON2:
-				codeFile = new File("code/Main.py");
-				run.append("python2 code/Main.py");
+				codeFile = new File("code/Main" + response.getToken() + ".py");
+				run.append("python2 code/Main" + response.getToken() + ".py");
 				break;
 			case PYTHON3:
-				codeFile = new File("code/Main.py");
-				run.append("python3 code/Main.py");
+				codeFile = new File("code/Main" + response.getToken() + ".py");
+				run.append("python3 code/Main" + response.getToken() + ".py");
 				break;
 			case PYPY2:
 				codeFile = new File("code/Main.py");
