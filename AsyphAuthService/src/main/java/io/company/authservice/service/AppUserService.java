@@ -3,7 +3,6 @@ package io.company.authservice.service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalUnit;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;

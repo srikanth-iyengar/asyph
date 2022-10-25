@@ -42,6 +42,7 @@ build/
 
 # Ignore Gradle build output directory
 build
+bin
 
-
-**/src/main/resources/application.yml
+db.json
+**/application.yml

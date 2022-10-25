@@ -56,7 +56,7 @@ public class ProblemsService {
 		builder.part("file", file.getResource());
 		String status = webClientBuilder.build()
 			.post()
-			.uri("http://ONLINE-JUDGE/upload-test-cases?problemId=" + problemId + "&contestId=" + contestId)
+			.uri("http://ONLINE-JUDGE/api/v1/Online-Judge/upload-test-cases?problemId=" + problemId + "&contestId=" + contestId)
 			.contentType(MediaType.MULTIPART_FORM_DATA)
 			.body(BodyInserters.fromMultipartData(builder.build()))
 			.retrieve()
@@ -68,7 +68,7 @@ public class ProblemsService {
 	public void deleteTestCases(String problemId, String contestId) {
 		webClientBuilder.build()
 			.delete()
-			.uri("http://ONLINE-JUDGE/delete-test-cases?problemId=" + problemId + "&contestId=" + contestId)
+			.uri("http://ONLINE-JUDGE/api/v1/Online-Judge/delete-test-cases?problemId=" + problemId + "&contestId=" + contestId)
 			.retrieve()
 			.bodyToMono(String.class)
 			.block();

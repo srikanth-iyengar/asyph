@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
+	  implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
     implementation 'org.springframework.boot:spring-boot-starter-data-cassandra:2.7.1' 
     implementation 'org.springframework.boot:spring-boot-starter-web:2.7.1' 
     implementation 'javax.xml.bind:jaxb-api:2.3.1' 
@@ -27,6 +27,8 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'    
     implementation "com.datastax.astra:astra-spring-boot-starter:0.3.4"
     implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+    implementation "org.springframework.boot:spring-boot-starter-security:2.7.1" 
+    implementation "org.springframework.boot:spring-boot-starter-mail:2.5.6" 
 }
 
 ext {

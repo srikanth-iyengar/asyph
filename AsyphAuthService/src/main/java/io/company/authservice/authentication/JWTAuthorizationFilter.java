@@ -44,13 +44,13 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 					stream(roles).forEach(role -> {
 						authorities.add(new SimpleGrantedAuthority(role));
 					});
-					UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username,
-							null, authorities);
+					UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
 					SecurityContextHolder.getContext().setAuthentication(authToken);
 					filterChain.doFilter(request, response);
 				} catch (Exception e) {
 					response.sendError(HttpServletResponse.SC_FORBIDDEN);
 				}
+
 			} else {
 				filterChain.doFilter(request, response);
 			}

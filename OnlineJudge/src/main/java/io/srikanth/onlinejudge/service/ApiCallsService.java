@@ -13,7 +13,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientException;
 
 import io.srikanth.onlinejudge.models.JudgeResponse;
 import reactor.core.publisher.Mono;
@@ -53,7 +52,7 @@ public class ApiCallsService {
 					throw new IOException("Failed to create parent directory"+ parent);
 				}
 				FileOutputStream fos = new FileOutputStream(newFile);
-				int len;
+				int len = 0;
 				while((len = zips.read(buffer)) > 0) {
 					fos.write(buffer);
 				}
@@ -89,7 +88,7 @@ public class ApiCallsService {
 		try {
 			webClientBuilder.build()
 				.put()
-				.uri("http://USER-SERVICE/update-submission")
+				.uri("http://USER-SERVICE/api/v1/user/update-submission")
 				.contentType(MediaType.APPLICATION_JSON)
 				.body(Mono.just(response), JudgeResponse.class)
 				.retrieve()

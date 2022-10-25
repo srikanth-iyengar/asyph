@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
+	  implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.7.1'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis' 
     implementation 'commons-io:commons-io:2.11.0'

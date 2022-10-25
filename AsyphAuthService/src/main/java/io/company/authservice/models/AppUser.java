@@ -47,6 +47,7 @@ public class AppUser implements UserDetails {
 	private Boolean isEnabled;
 
 	@Column("role")
+	@CassandraType(type = Name.TEXT)
 	private Role role;
 
 	public AppUser() {
