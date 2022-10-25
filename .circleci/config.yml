@@ -8,11 +8,7 @@ jobs:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
     steps:
-      - run: cd ApiGateway && ./gradlew build --scan -s
-      - run: cd UserMicroservice && ./gradlw build --scan -s
-      - run: cd ProblemsAndContestService && ./gradlew build --scan -s
-      - run: cd OnlineJudge && ./gradlew build --scan -s
-
+      - run: echo "Build..."
 
 workflows:
   build:
