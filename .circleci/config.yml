@@ -14,6 +14,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies-
+      - run: chmod +x ApiGateway/gradlew && bash ApiGateway/gradlew
       - run: gradle dependencies
       - save_cache:
           paths:
