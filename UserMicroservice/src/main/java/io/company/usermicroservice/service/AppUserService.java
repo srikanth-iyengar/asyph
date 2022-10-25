@@ -1,15 +1,23 @@
 package io.company.usermicroservice.service;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import io.company.usermicroservice.models.AppUser;
+import io.company.usermicroservice.models.EmailActivation;
 import io.company.usermicroservice.models.JudgeRequest;
 import io.company.usermicroservice.models.JudgeResponse;
 import io.company.usermicroservice.models.Problems;
@@ -18,11 +26,12 @@ import io.company.usermicroservice.models.UpdateLeaderboard;
 import io.company.usermicroservice.models.UserRegisterRequest;
 import io.company.usermicroservice.models.Verdict;
 import io.company.usermicroservice.repository.AppUserRepository;
+import io.company.usermicroservice.repository.EmailActivationRepository;
 import io.company.usermicroservice.repository.SubmissionRepository;
 import reactor.core.publisher.Mono;
 
 @Service
-public class AppUserService {
+public class AppUserService implements UserDetailsService {
 
 	@Autowired
 	private AppUserRepository appUserRepository;
@@ -33,9 +42,27 @@ public class AppUserService {
 	@Autowired
 	private SubmissionRepository submissionRepository;
 
+
+	@Autowired
+	private EmailActivationRepository emailActivationRepository;
+
+	@Autowired
+	private JavaMailSender javaMailSender;
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		AppUser appUser = appUserRepository.findByUsername(username);
+		return appUser;
+	}
+
 	public boolean registerUser(UserRegisterRequest request) {
-		AppUser alreadyRegister = appUserRepository.findByUsername(request.emailId);
+		AppUser alreadyRegister = appUserRepository.findByUsername(request.username);
+		
 		// Checking if the user is already registered
+		if(alreadyRegister != null) {
+			return false;
+		}
+		alreadyRegister = appUserRepository.findByEmailId(request.emailId);
 		if(alreadyRegister != null) {
 			return false;
 		}
@@ -49,9 +76,45 @@ public class AppUserService {
 				.password(password)
 				.build();
 		appUserRepository.save(user);
+		sendActivationLink(user);
 		return true;
 	}
 
+	public void sendActivationLink(AppUser appUser) {
+		String token = UUID.randomUUID().toString().replace("-", "");
+		EmailActivation emailActivation = new EmailActivation(token, appUser.getUsername());
+		emailActivationRepository.save(emailActivation);
+		
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("ksrikanth200212@gmail.com");
+		message.setTo(appUser.getEmailId());
+		message.setSubject("Account activation for Asyph-OJ");
+		message.setText("Here is your activation link for asyph-oj click here: " + "https://localhost:8083/activate?token=" + token + "&username=" + appUser.getUsername() + "\n" + "Regards, \n" + "Srikanth Iyengar\n" + "Asyph-OJ Team");
+		javaMailSender.send(message);
+	}
+
+	public Boolean checkToken(String token, LocalDateTime time, String username) {
+		EmailActivation emailActivation = emailActivationRepository.findById(username).get();
+		if(emailActivation == null || !token.equals(emailActivation.getToken())) {
+			regenerateToken(username);
+			return false;
+		}
+		
+		Duration dur = Duration.between(emailActivation.getGeneratedAt(), time);
+		if(dur.getSeconds() <= 30 * 60) {
+			AppUser appUser = appUserRepository.findByUsername(username);
+			appUser.setIsEnabled(Boolean.valueOf(true));
+			appUserRepository.save(appUser);
+			return true;
+		}
+		regenerateToken(username);
+		return false;
+	}
+
+	public void regenerateToken(String username) {
+		AppUser appUser = appUserRepository.findByUsername(username);
+		sendActivationLink(appUser);
+	}
 	private Problems fetchProblem(String id) {
 		Problems problem = webClientBuilder.build()
 			.get()

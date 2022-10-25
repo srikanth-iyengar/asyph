@@ -1,17 +1,16 @@
-gateway:
-	@ mvn -f ./AsyphAuthService spring-boot:run
+.PHONY: build up-gateway up-user up-problems
 
-userservice:
-	@ mvn -f ./UserMicroservice spring-boot:run
+build:
+	@ cd OnlineJudge && gradle bootJar && docker build . -t deadcoder11u2/judge-alpine
+	@ docker stop judge-alpine
+	@ docker rm judge-alpine
+	@ docker run -d -p8081:8081 --name=judge-alpine deadcoder11u2/judge-alpine
 
-contestservice:
-	@ mvn -f ./ProblemsAndContestService spring-boot:run
+up-gateway:
+	@ cd ApiGateway && gradle bootRun
 
-judge:
-	@ mvn -f ./OnlineJudge spring-boot:run
+up-user:
+	@ cd UserMicroservice && gradle bootRun
 
-update:
-	@	mvn -f ./AsyphAuthService clean install -U
-	@	mvn -f ./UserMicroservice clean install -U
-	@	mvn -f ./ProblemsAndContestService clean install -U
-	@	mvn -f ./OnlineJudge clean install -U
+up-problems:
+	@ cd ProblemsContestService && gradle bootRun
