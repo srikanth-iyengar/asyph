@@ -4,26 +4,14 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk
-    working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            - v1-dependencies-
-      - run: chmod +x ApiGateway/gradlew && bash ApiGateway/gradlew
-      - run: gradle dependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-      - run: cd ApiGateway && gradle build
-      - run: cd UserMicroservice && gradle build
-      - run: cd ProblemsAndContestService && gradle build
-      - run: cd OnlineJudge && gradle build
+      - run: cd ApiGateway && ./gradlew build --scan -s
+      - run: cd UserMicroservice && ./gradlw build --scan -s
+      - run: cd ProblemsAndContestService && ./gradlew build --scan -s
+      - run: cd OnlineJudge && ./gradlew build --scan -s
 
 
 workflows:
