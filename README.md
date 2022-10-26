@@ -1,12 +1,7 @@
 <p align='center'>
-    <img width="80%" src="./docs/images/logo-transparent.png">
+    <img width="70%" src="./docs/images/logo-transparent.png">
 </p>
 
-<h1>
-<p align='center'>
-ASYPH - Online Judge
-</p>
-</h1>
 <p align='center'>
 <img alt="CircleCI" src="https://img.shields.io/circleci/build/github/srikanth-iyengar/Asyph-OnlineJudge">
 <img alt="GitHub" src="https://img.shields.io/github/license/srikanth-iyengar/Asyph-OnlineJudge">
