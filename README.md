@@ -8,8 +8,18 @@ ASYPH - Online Judge
 </p>
 </h1>
 <p align='center'>
-<img src='https://circleci.com/gh/Deadcoder11u2/Asyph-OnlineJudge.svg?style=svg'>
+<img alt="CircleCI" src="https://img.shields.io/circleci/build/github/Deadcoder11u2/Asyph-OnlineJudge">
+<img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/Deadcoder11u2/Asyph-OnlineJudge">
+<img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/Deadcoder11u2/Asyph-OnlineJudge">
 <img src ='https://visitor-badge.laobi.icu/badge?page_id=Deadcoder11u2.Asyph-OnlineJudge'>
+<img src ='https://img.shields.io/badge/version-0.0.1-blue'>
+<img src ='https://img.shields.io/badge/coverage-60%25-blue'>
+<a href="https://github.com/badges/shields/pulse" alt="Activity">
+<img src="https://img.shields.io/github/commit-activity/m/Deadcoder11u2/Asyph-OnlineJudge" />
+</a>
+<a href="https://github.com/Deadcoder11u2/Asyph-OnlineJudge/graphs/contributors" alt="Contributors">
+<img src="https://img.shields.io/github/contributors/Deadcoder11u2/Asyph-OnlineJudge" />
+</a>
 <!-- [![CircleCI](https://circleci.com/gh/Deadcoder11u2/Asyph-OnlineJudge.svg?style=svg)](https://github.com/Deadcoder11u2/Asyph-OnlineJudge) -->
 </p>
 
