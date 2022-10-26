@@ -9,10 +9,15 @@ install-dev:
 	@ cd UserMicroservice && gradle dependencies
 
 build:
-	@ cd OnlineJudge && gradle bootJar && docker build . -t deadcoder11u2/judge-alpine
-	@ docker stop judge-alpine
-	@ docker rm judge-alpine
-	@ docker run -d -p8081:8081 --name=judge-alpine deadcoder11u2/judge-alpine
+	@ cd OnlineJudge && gradle bootJar
+	@ cd ApiGateway && gradle bootJar
+	@ cd UserMicroservice && gradle bootJar
+	@ cd ProblemsContestService && gradle bootJar
+
+test:
+	@ cd ApiGateway && gradle test
+	@ cd UserMicroservice && gradle test
+	@ cd ProblemsContestService && gradle test
 
 up-gateway:
 	@ cd ApiGateway && gradle bootRun

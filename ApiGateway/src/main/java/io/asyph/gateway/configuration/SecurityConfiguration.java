@@ -17,6 +17,7 @@ public class SecurityConfiguration {
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
         http.authorizeExchange(exchanges -> {
             exchanges.pathMatchers("/api/v1/user/register", "/api/v1/user/authenticate").permitAll();
+            exchanges.pathMatchers("/api/v1/user/admin/**").hasAnyAuthority("ADMIN");
             exchanges.pathMatchers("/api/v1/Problems-Contest-Service/**").hasAnyAuthority("ADMIN", "PROBLEM_SETTER");
         });
         http.securityContextRepository(NoOpServerSecurityContextRepository.getInstance());

@@ -45,7 +45,6 @@ public class UserController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-
 	@GetMapping("/ping")
 	public String ping() {
 		return "PONG";
@@ -62,6 +61,16 @@ public class UserController {
 	@PostMapping("/register") 
 	public void registerUser(@RequestBody UserRegisterRequest req) {
 		appUserService.registerUser(req);
+	}
+
+	@PutMapping("/admin/update-problem-setter")
+	public void updatePrivilige(@RequestParam String username) {
+		appUserService.updatePrivilige(username);
+	}
+
+	@PutMapping("/admin/block-user")
+	public void blockUser(@RequestParam String username) {
+		appUserService.blockUser(username);
 	}
 
 	@PostMapping("/authenticate")

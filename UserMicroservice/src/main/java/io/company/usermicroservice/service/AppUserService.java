@@ -75,9 +75,22 @@ public class AppUserService implements UserDetailsService {
 				.lastName(request.lastName)
 				.password(password)
 				.build();
+		user.setRole("USER");
 		appUserRepository.save(user);
 		sendActivationLink(user);
 		return true;
+	}
+
+	public void updatePrivilige(String username) {
+		AppUser user = appUserRepository.findByUsername(username);
+		user.setRole("PROBLEM_SETTER");
+		appUserRepository.save(user);
+	}
+
+	public void blockUser(String username) {
+		AppUser user = appUserRepository.findByUsername(username);
+		user.setIsLocked(true);
+		appUserRepository.save(user);
 	}
 
 	public void sendActivationLink(AppUser appUser) {
