@@ -1,7 +1,6 @@
 .PHONY: build up-gateway up-user-service up-problem-service install-dev
 
 ## installation
-
 install-dev:
 	@ cd ApiGateway && gradle dependencies
 	@ cd ProblemsContestService && gradle dependencies
@@ -9,15 +8,21 @@ install-dev:
 	@ cd UserMicroservice && gradle dependencies
 
 build:
-	@ cd OnlineJudge && gradle bootJar
-	@ cd ApiGateway && gradle bootJar
-	@ cd UserMicroservice && gradle bootJar
-	@ cd ProblemsContestService && gradle bootJar
+	@ gradle OnlineJudge:bootJar
+	@ gradle ApiGateway:bootJar
+	@ gradle UserMicroservice:bootJar
+	@ gradle ProblemsContestService:bootJar
+
+clean:
+	@ gradle OnlineJudge:clean
+	@ gradle ApiGateway:clean
+	@ gradle UserMicroservice:clean
+	@ gradle ProblemsContestService:clean
 
 test:
-	@ cd ApiGateway && gradle test
-	@ cd UserMicroservice && gradle test
-	@ cd ProblemsContestService && gradle test
+	@ gradle ApiGateway:test
+	@ gradle UserMicroservice:test
+	@ gradle ProblemsContestService:test
 
 up-gateway:
 	@ cd ApiGateway && gradle bootRun
@@ -30,3 +35,8 @@ up-problem-service:
 
 up-judge-service:
 	@ cd OnlineJudge && gradle bootRun
+
+docker-dev:
+		@ docker build -f Dockerfile.dev -t srikanth/asyph .
+
+docker-build-dev: clean build docker-dev
