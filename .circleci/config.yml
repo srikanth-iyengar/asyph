@@ -9,7 +9,7 @@ jobs:
       TERM: dumb
     steps:
       - checkout
-      - run: cd ApiGateway && chmod +x ./gradlew && ./gradlew build --scan -s
+      - run: cd ApiGateway && chmod +x ./gradlew && ./gradlew bootJar --scan -s
 
 workflows:
   build:
