@@ -44,5 +44,7 @@ build/
 build
 bin
 
+## SECRETS
 db.json
+.env
 **/application.yml
