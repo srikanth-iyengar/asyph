@@ -1,11 +1,14 @@
 .PHONY: build up-gateway up-user-service up-problem-service install-dev
 
+MAKE = make
 ## installation
 install-dev:
 	@ cd ApiGateway && gradle dependencies
 	@ cd ProblemsContestService && gradle dependencies
 	@ cd OnlineJudge && gradle dependencies
 	@ cd UserMicroservice && gradle dependencies
+	@ curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | bash
+	@ circleci update
 
 build:
 	@ gradle OnlineJudge:bootJar
@@ -37,6 +40,15 @@ up-judge-service:
 	@ cd OnlineJudge && gradle bootRun
 
 docker-dev:
-		@ docker build -f Dockerfile.dev -t srikanth/asyph .
+	@ docker build -f Dockerfile.dev -t srikanth/asyph .
 
-docker-build-dev: clean build docker-dev
+ci:
+	@ circleci config validate
+
+docker-build-dev: 
+	@ echo "\033[1m============CLEANING THE PROJECT============\033[0m"
+	$(MAKE) clean
+	@ echo "\033[1m============BUILDING THE PROJECT============\033[0m"
+	$(MAKE) build 
+	@ echo "\033[1m============DOCKER IMAGE BUILD INITIATED============\033[0m"
+	$(MAKE) docker-dev

@@ -10,10 +10,10 @@ jobs:
     steps:
       - checkout
       - run: cd ApiGateway && chmod +x ./gradlew && ./gradlew
-      - run: cd ApiGateway && gradle bootJar --scan -s
-      - run: cd OnlineJudge && gradle bootJar --scan -s
-      - run: cd ProblemsAndContestService && gradle bootJar --scan -s
-      - run: cd UserMicroservice && gradle bootJar --scan -s
+      - run: gradle ApiGateway:bootJar --scan -s
+      - run: gradle OnlineJudge:bootJar --scan -s
+      - run: gradle ProblemsAndContestService:bootJar --scan -s
+      - run: gradle UserMicroservice:bootJar --scan -s
 
 
 workflows:
