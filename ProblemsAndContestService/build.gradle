@@ -16,7 +16,9 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-webflux"
     implementation "org.quartz-scheduler:quartz" 
     implementation 'log4j:log4j:1.2.17'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'    
     runtimeOnly "org.springframework.boot:spring-boot-devtools"
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
     testImplementation "org.springframework.boot:spring-boot-starter-test" 
     implementation "com.datastax.astra:astra-spring-boot-starter:0.3.4"
 }
