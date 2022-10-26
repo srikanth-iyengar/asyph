@@ -7,6 +7,8 @@ COPY OnlineJudge/build/libs/OnlineJudge-0.0.1-SNAPSHOT.jar judge.jar
 COPY UserMicroservice/build/libs/UserMicroservice-0.0.1-SNAPSHOT.jar user-service.jar
 COPY ProblemsAndContestService/build/libs/ProblemsAndContestService-0.0.1-SNAPSHOT.jar problem-service.jar
 COPY supervisord.conf /etc/supervisord.conf
+ARG GMAIL_APP_PASSWORD
+ENV GMAIL_PASSWORD=GMAIL_APP_PASSWORD
 EXPOSE 8080
 EXPOSE 8085
 EXPOSE 8086
