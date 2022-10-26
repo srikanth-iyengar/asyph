@@ -9,6 +9,7 @@ ASYPH - Online Judge
 </h1>
 <p align='center'>
 <img alt="CircleCI" src="https://img.shields.io/circleci/build/github/Deadcoder11u2/Asyph-OnlineJudge">
+<img alt="GitHub" src="https://img.shields.io/github/license/Deadcoder11u2/Asyph-OnlineJudge">
 <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/Deadcoder11u2/Asyph-OnlineJudge">
 <img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/Deadcoder11u2/Asyph-OnlineJudge">
 <img src ='https://visitor-badge.laobi.icu/badge?page_id=Deadcoder11u2.Asyph-OnlineJudge'>
@@ -24,14 +25,14 @@ ASYPH - Online Judge
 <!-- [![CircleCI](https://circleci.com/gh/Deadcoder11u2/Asyph-OnlineJudge.svg?style=svg)](https://github.com/Deadcoder11u2/Asyph-OnlineJudge) -->
 </p>
 
-Architecture of Asyph
+## Architecture of Asyph
+![service_architecture](https://user-images.githubusercontent.com/88551109/175817787-66b97d29-8842-4e30-8ec9-b722b8c5150d.png)
 
 ## 🤖 Installation
 ```
 make install-dev
 ```
 
-![service_architecture](https://user-images.githubusercontent.com/88551109/175817787-66b97d29-8842-4e30-8ec9-b722b8c5150d.png)
 
 ## 💻 Development
 
