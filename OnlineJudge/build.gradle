@@ -18,6 +18,8 @@ dependencies {
     runtimeOnly 'org.springframework.boot:spring-boot-devtools' 
     testImplementation 'org.springframework.boot:spring-boot-starter-test' 
     implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'    
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
     testImplementation 'io.projectreactor:reactor-test'
 }
 
