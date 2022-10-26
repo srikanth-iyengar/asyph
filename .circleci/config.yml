@@ -8,7 +8,9 @@ jobs:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
     steps:
-      - run: ls
+      - checkout
+      - run: cd ApiGateway && ./gradlew
+      - run: gradle build
 
 workflows:
   build:
