@@ -2,12 +2,18 @@ version: "3"
 
 services:
   leader:
-    image: consul
+    image: deadcoder11u2/asyph
     container_name: leaderconsul
     ports:
-      - 8500:8500
+      - 8080:8080
     environment:
-      CONSUL_BIND_INTERFACE: eth0
+      GMAIL_PASSWORD: ${GMAIL_PASSWORD}
+      ASTRA_API_APPLICATION-TOKEN: ${ASTRA_API_APPLICATION-TOKEN}
+      ASTRA_API_DATABASE-ID: ${ASTRA_API_DATABASE-ID}
+      ASTRA_API_DATABASE-REGION: ${ASTRA_API_DATABASE-REGION}
+      ASTRA_CQL_DRIVER-CONFIG_BASIC_SESSION-KEYSPACE: ${ASTRA_CQL_DRIVER-CONFIG_BASIC_SESSION-KEYSPACE}
+      GMAIL_ACCOUNT: ${GMAIL_ACCOUNT}
+
     networks:
       consul_network:
         ipv4_address: 99.0.0.5
