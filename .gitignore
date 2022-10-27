@@ -48,4 +48,6 @@ bin
 ## SECRETS
 db.json
 .env
+env.bat
 **/application.yml
+Dockerfile

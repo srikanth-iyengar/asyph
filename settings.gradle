@@ -1,5 +1,5 @@
 rootProject.name = "Asyph"
 include 'ApiGateway'
 include 'OnlineJudge'
-include 'ProblemsAndContestService'
 include 'UserMicroservice'
+include 'ProblemsAndContestService'

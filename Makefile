@@ -14,13 +14,13 @@ build:
 	@ gradle OnlineJudge:bootJar
 	@ gradle ApiGateway:bootJar
 	@ gradle UserMicroservice:bootJar
-	@ gradle ProblemsContestService:bootJar
+	@ gradle ProblemsAndContestService:bootJar
 
 clean:
 	@ gradle OnlineJudge:clean
 	@ gradle ApiGateway:clean
 	@ gradle UserMicroservice:clean
-	@ gradle ProblemsContestService:clean
+	@ gradle ProblemsAndContestService:clean
 
 test:
 	@ gradle ApiGateway:test
@@ -40,7 +40,7 @@ up-judge-service:
 	@ cd OnlineJudge && gradle bootRun
 
 docker-dev:
-	@ docker build -f Dockerfile.dev -t srikanth/asyph .
+	@ docker build -f Dockerfile.dev -t deadcoder11u2/asyph .
 
 ci:
 	@ circleci config validate

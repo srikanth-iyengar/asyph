@@ -44,7 +44,7 @@ dependencyManagement {
 group = "io.asyph"
 version = "0.0.1-SNAPSHOT"
 description = "UserMicroservice"
-sourceCompatibility = "17"
+sourceCompatibility = "11"
 
 tasks.named('test') {
     useJUnitPlatform()
