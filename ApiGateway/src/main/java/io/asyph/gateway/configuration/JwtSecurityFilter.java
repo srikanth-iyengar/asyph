@@ -5,6 +5,7 @@ import static java.util.Arrays.stream;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,19 +27,25 @@ public class JwtSecurityFilter implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        String token = getToken(exchange.getRequest());
-        Algorithm algorithm = Algorithm.HMAC512("secret".getBytes());
-        JWTVerifier verifier = JWT.require(algorithm).build();
-        DecodedJWT decodedJWT = verifier.verify(token);
-        String username = decodedJWT.getSubject();
-        String roles[] = decodedJWT.getClaim("roles").asArray(String.class);
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        stream(roles).forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority(role));
-        });
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-        return chain.filter(exchange);
+        try {
+            String token = getToken(exchange.getRequest());
+            Algorithm algorithm = Algorithm.HMAC512("secret".getBytes());
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT decodedJWT = verifier.verify(token);
+            String username = decodedJWT.getSubject();
+            String roles[] = decodedJWT.getClaim("roles").asArray(String.class);
+            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+            stream(roles).forEach(role -> {
+                authorities.add(new SimpleGrantedAuthority(role));
+            });
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            return chain.filter(exchange);
+        }
+        catch(Exception e ) {
+            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            return chain.filter(exchange);
+        }
     }
 
 
@@ -51,4 +58,3 @@ public class JwtSecurityFilter implements WebFilter {
     }
 
 }
-

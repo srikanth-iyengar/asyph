@@ -36,7 +36,7 @@ dependencyManagement {
 group = 'io.srikanth'
 version = '0.0.1-SNAPSHOT'
 description = 'OnlineJudge'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 tasks.named('test') {
 	useJUnitPlatform()
