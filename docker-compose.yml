@@ -40,7 +40,6 @@ services:
       consul_network:
         ipv4_address: 99.0.0.7
 networks:
-networks:
   consul_network:
     driver: bridge
     ipam:
