@@ -40,9 +40,21 @@ make up-problem-service
 make up-judge-service
 ```
 
-To start the eureka server navigate to the AsyphDiscoveryServer directory and run 
-```sh 
-gradle bootRun
+If you are too lazy, start all the services by running ```docker-compose up```
+
+### **Make sure that you have all the variables present in your  environment**
+
+Here is the sample .env file
+```bash 
+GMAIL_PASSWORD=${GMAIL_PASSWORD}
+ASTRA_API_APPLICATION-TOKEN=${ASTRA_TOKEN}
+ASTRA_API_DATABASE-ID=${ASTRA_DB_ID}
+ASTRA_API_DATABASE-REGION=${ASTRA_API_DB_REGION}
+ASTRA_CQL_DRIVER-CONFIG_BASIC_SESSION-KEYSPACE=${ASTRA_SESSION_KEYSPACE}
+GMAIL_ACCOUNT=${GMAIL_ID}
 ```
-Now open https:localhost:8761 to see the eureka server configuration and registered services
-<img width="947" alt="image" src="https://user-images.githubusercontent.com/88551109/175354017-3971557c-82bd-4407-b114-4816c124082c.png">
+
+
+## 📄API Docs
+User Service Api Doc: https://gateway-srikanth-iyengar.cloud.okteto.net/api/v1/user/swagger-ui/index.html <br>
+Problems Contest Service Api Doc: https://gateway-srikanth-iyengar.cloud.okteto.net/api/v1/Problems-Contest-Service/swagger-ui/index.html

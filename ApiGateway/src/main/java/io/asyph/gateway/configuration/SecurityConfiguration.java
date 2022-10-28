@@ -32,7 +32,14 @@ public class SecurityConfiguration {
             .authenticationManager(authenticationManager)
             .securityContextRepository(securityContextRepository)
             .authorizeExchange()
-            .pathMatchers("/api/v1/user/register", "/api/v1/user/authenticate").permitAll()
+            .pathMatchers("/api/v1/user/register", 
+                    "/api/v1/user/authenticate", 
+                    "/api/v1/user/swagger-ui/**", 
+                    "/api/v1/user/v3/api-docs/**",
+                    "/api/v1/Problems-Contest-Service/swagger-ui/**", 
+                    "/api/v1/Problems-Contest-Service/v3/api-docs/**"
+                    )
+            .permitAll()
             .pathMatchers("/api/v1/user/admin/**").hasAuthority("ADMIN")
             .pathMatchers("/api/v1/Problems-Contest-Service").hasAnyAuthority("ADMIN", "PROBLEM_SETTER")
             .anyExchange()

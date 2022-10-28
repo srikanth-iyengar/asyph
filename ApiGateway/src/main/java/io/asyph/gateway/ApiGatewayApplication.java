@@ -17,7 +17,7 @@ public class ApiGatewayApplication {
 													.uri("lb://USER-SERVICE")
 						)
 				.route("r1", r -> r
-													.path("/api/v1/Problems-Contest-Service")
+													.path("/api/v1/Problems-Contest-Service/**")
 													.uri("lb://PROBLEMS-CONTEST-SERVICE")
 						)
 				.build();
