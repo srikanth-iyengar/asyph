@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo "Deploying"
                 sh "cd ApiGateway && chmod +x ./gradlew && ./gradlew bootJar"
-                sh "gradle OnlineJudge:bootJar"
+                sh "cd OnlineJudge && ./gradlew bootJar"
             }
         }
     }
