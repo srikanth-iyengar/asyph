@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Judge bootJar') {
             steps {
-                sh "cd UserMicroservice && chmod +x ./gradlew && ./gradlew bootJar"
+                sh "cd ApiGateway && chmod +x ./gradlew && ./gradlew bootJar"
             }
         }
     }
