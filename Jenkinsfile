@@ -7,12 +7,14 @@ pipeline {
                 echo 'Building'
             }
         }
-        stage('bootJar') {
+        stage('Api bootJar') {
             steps {
                 echo "Deploying"
                 sh "cd ApiGateway && chmod +x ./gradlew && ./gradlew bootJar && cd .."
-                sh "cd OnlineJudge && chmod +x ./gradlew && ./gradlew bootJar && cd .."
             }
+        }
+        stage('Judge bootJar') {
+            sh "cd OnlineJudge && chmod +x ./gradlew && ./gradlew bootJar && cd .."
         }
     }
 }
