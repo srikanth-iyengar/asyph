@@ -10,6 +10,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deploying"
+                sh "cd ApiGateway && chmod +x ./gradlew && ./gradlew bootJar"
             }
         }
     }
