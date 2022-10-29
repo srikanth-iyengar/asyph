@@ -14,7 +14,9 @@ pipeline {
             }
         }
         stage('Judge bootJar') {
-            sh "cd OnlineJudge && chmod +x ./gradlew && ./gradlew bootJar && cd .."
+            steps {
+                sh "cd OnlineJudge && chmod +x ./gradlew && ./gradlew bootJar && cd .."
+            }
         }
     }
 }
