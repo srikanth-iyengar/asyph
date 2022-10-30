@@ -4,6 +4,7 @@
 
 <p align='center'>
 <img alt="CircleCI" src="https://img.shields.io/circleci/build/github/srikanth-iyengar/Asyph-OnlineJudge">
+<img alt="Website" src="https://img.shields.io/website?down_color=lightgrey&down_message=offline&up_color=green&url=https%3A%2F%2Fgateway-srikanth-iyengar.cloud.okteto.net%2Fapi%2Fv1%2Fuser%2Fswagger-ui%2Findex.html">
 <img alt="GitHub" src="https://img.shields.io/github/license/srikanth-iyengar/Asyph-OnlineJudge">
 <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/srikanth-iyengar/Asyph-OnlineJudge">
 <img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/srikanth-iyengar/Asyph-OnlineJudge">
