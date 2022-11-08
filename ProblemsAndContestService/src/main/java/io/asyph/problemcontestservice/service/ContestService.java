@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import io.asyph.problemcontestservice.jobs.ContestStatusJob;
 import io.asyph.problemcontestservice.models.Contest;
+import io.asyph.problemcontestservice.models.ContestStatus;
 import io.asyph.problemcontestservice.models.CreateContestRequest;
 import io.asyph.problemcontestservice.models.Problems;
 import io.asyph.problemcontestservice.models.RescheduleContestRequest;
@@ -108,6 +109,10 @@ public class ContestService {
 
     public List<Contest> getListedContest() {
         return contestRepository.findByUnlisted(Boolean.valueOf(false));
+    }
+
+    public List<Contest> getByContestStatus(String status) {
+        return contestRepository.findByStatus(ContestStatus.valueOf(status));
     }
 
 }

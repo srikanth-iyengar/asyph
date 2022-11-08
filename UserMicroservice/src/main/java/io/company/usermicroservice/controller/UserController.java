@@ -31,7 +31,10 @@ import io.company.usermicroservice.models.AuthenticationRequest;
 import io.company.usermicroservice.models.JudgeResponse;
 import io.company.usermicroservice.models.Submission;
 import io.company.usermicroservice.models.UserRegisterRequest;
+import io.company.usermicroservice.requestmodels.BlogRequest;
+import io.company.usermicroservice.models.Blog;
 import io.company.usermicroservice.service.AppUserService;
+import io.company.usermicroservice.service.BlogService;
 
 @RestController
 public class UserController {
@@ -41,9 +44,11 @@ public class UserController {
 	@Autowired
 	private JWTVerifier jwtVerifier;
 
-
 	@Autowired
 	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private BlogService blogService;
 
 	@GetMapping("/ping")
 	public String ping() {
@@ -114,6 +119,23 @@ public class UserController {
 	@PutMapping("/update-submission")
 	public void updateSubmission(@RequestBody JudgeResponse response) {
 		appUserService.updateSubmission(response);
+	}
+
+	/** Blog Related Mappings **/
+	
+	@GetMapping("/lastest-blogs")
+	List<Blog> getLatestBlogs(@RequestParam int limit) {
+		return blogService.latestBlog(limit);
+	}
+
+	@PostMapping("/admin/blog/create")
+	Map<String, String> createBlog(@RequestBody BlogRequest req) {
+		return blogService.saveBlog(req);
+	}
+
+	@PutMapping("/admin/blog/update/{id}")
+	Map<String, String> updateBlog(@RequestBody BlogRequest req, @PathVariable String id) {
+		return blogService.updateBlog(req, id);
 	}
 
 	/* function to check the jwt and the username argument passed */

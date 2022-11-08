@@ -63,6 +63,11 @@ public class MainController {
 		return contestService.rescheduleContest(request);
 	}
 
+	@GetMapping("get-contest-by-status")
+	public List<Contest> getContestByStatus(@RequestParam String status) {
+		return contestService.getByContestStatus(status);
+	}
+
 	@PostMapping("/add-new-problem")
 	public Problems addNewProblem(@RequestBody CreateProblem request) {
 		return problemsService.createProblem(request);

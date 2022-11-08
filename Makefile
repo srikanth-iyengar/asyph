@@ -10,6 +10,10 @@ install-dev:
 	@ curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | bash
 	@ circleci update
 
+init-env:
+	@ cp .env ./UserMicroservice/.env
+	@ cp .env ./ProblemsAndContestService/.env
+
 build:
 	@ gradle OnlineJudge:bootJar
 	@ gradle ApiGateway:bootJar
@@ -41,6 +45,8 @@ up-judge-service:
 
 docker-dev:
 	@ docker build -f Dockerfile.dev -t deadcoder11u2/asyph .
+	@ cd ./UserMicroservice && docker build . -t deadcoder11u2/asyph-user && cd ..
+	@ cd ./ProblemsAndContestService && docker build . -t deadcoder11u2/asyph-problems && cd ..
 
 ci:
 	@ circleci config validate

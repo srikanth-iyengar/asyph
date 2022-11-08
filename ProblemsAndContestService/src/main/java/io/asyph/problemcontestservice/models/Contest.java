@@ -8,6 +8,8 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import com.datastax.oss.driver.api.core.uuid.Uuids;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Table("contest")
 public class Contest {
@@ -51,6 +53,7 @@ public class Contest {
 
 	@Column("scheduler_id")
 	@CassandraType(type = Name.TEXT)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String schedulerId;
 
 	private Contest(Builder builder) {

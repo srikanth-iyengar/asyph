@@ -2,13 +2,10 @@ package io.asyph.gateway.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
-import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.context.ServerSecurityContextRepository;
 import org.springframework.web.server.session.WebSessionManager;
 
 import reactor.core.publisher.Mono;
@@ -23,8 +20,6 @@ public class SecurityConfiguration {
     @Autowired
     private AuthenticationManager authenticationManager;
     
-    @Autowired
-    private JwtSecurityFilter jwtSecurityFilter;
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
         return 
@@ -37,7 +32,8 @@ public class SecurityConfiguration {
                     "/api/v1/user/swagger-ui/**", 
                     "/api/v1/user/v3/api-docs/**",
                     "/api/v1/Problems-Contest-Service/swagger-ui/**", 
-                    "/api/v1/Problems-Contest-Service/v3/api-docs/**"
+                    "/api/v1/Problems-Contest-Service/v3/api-docs/**",
+                    "/api/v1/user/latest-blogs"
                     )
             .permitAll()
             .pathMatchers("/api/v1/user/admin/**").hasAuthority("ADMIN")
