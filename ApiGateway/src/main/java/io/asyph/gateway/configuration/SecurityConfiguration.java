@@ -23,7 +23,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
         return 
-            http.csrf().and().cors().disable()
+            http.csrf().disable().cors().disable()
             .authenticationManager(authenticationManager)
             .securityContextRepository(securityContextRepository)
             .authorizeExchange()
@@ -33,7 +33,8 @@ public class SecurityConfiguration {
                     "/api/v1/user/v3/api-docs/**",
                     "/api/v1/Problems-Contest-Service/swagger-ui/**", 
                     "/api/v1/Problems-Contest-Service/v3/api-docs/**",
-                    "/api/v1/user/lastest-blogs/**"
+                    "/api/v1/user/lastest-blogs/**",
+                    "/api/v1/Problems-Contest-Service/get-contest-by-status/**"
                     )
             .permitAll()
             .pathMatchers("/api/v1/user/admin/**").hasAuthority("ADMIN")
