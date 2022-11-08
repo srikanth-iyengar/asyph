@@ -2,7 +2,7 @@ FROM alpine
 RUN apk update && \
     apk add openjdk17-jre-headless && \
     apk add supervisor
-COPY ApiGateway/build/libs/gateway-0.0.1-SNAPSHOT.jar gateway.jar
+COPY ./ApiGateway/build/libs/ApiGateway-0.0.1-SNAPSHOT.jar gateway.jar
 COPY supervisord.conf /etc/supervisord.conf
 EXPOSE 8080
 EXPOSE 8085

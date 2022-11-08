@@ -8,6 +8,7 @@ import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 
 import io.asyph.problemcontestservice.models.Contest;
+import io.asyph.problemcontestservice.models.ContestStatus;
 
 public interface ContestRepository extends CassandraRepository<Contest, String> {
 	Optional<Contest> findByContestId(String contestId);
@@ -26,4 +27,7 @@ public interface ContestRepository extends CassandraRepository<Contest, String> 
 
 	@AllowFiltering
 	Contest findBySchedulerId(String id);
+
+	@AllowFiltering
+	List<Contest> findByStatus(ContestStatus status);
 }
