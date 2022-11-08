@@ -47,6 +47,9 @@ docker-dev:
 	@ docker build -f Dockerfile.dev -t deadcoder11u2/asyph .
 	@ cd ./UserMicroservice && docker build . -t deadcoder11u2/asyph-user && cd ..
 	@ cd ./ProblemsAndContestService && docker build . -t deadcoder11u2/asyph-problems && cd ..
+	@ docker push deadcoder11u2/asyph
+	@ docker push deadcoder11u2/asyph-user
+	@ docker push deadcoder11u2/asyph-problems
 
 ci:
 	@ circleci config validate
