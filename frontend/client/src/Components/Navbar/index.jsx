@@ -2,23 +2,20 @@ import React from 'react'
 import { Box } from '@mui/system'
 import { AppBar, Toolbar, Button, Menu, MenuItem, Typography, IconButton } from '@mui/material'
 import Logo from "../../logo-transparent.png"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Api from "../../Api"
 
-const pages = ["Home", "Contest", "Problemset"]
+const pages = ["Home", "Contest", "Problemset", "Blog"]
 const options = ["Sign in", "Sign up"]
 
 const Index = () => {
-  const [anchorElNav, setAnchorElNav] = useState(null)
-
-
-  const handleOpenNav = (event) => {
-    setAnchorElNav(event.currentTarget)
-  }
-
-  const handleCloseNav = (event) => {
-    setAnchorElNav(null)
-  }
-
+  useEffect(() => {
+    Api.get("/user/lastest-blogs", {params: {limit: 10}})
+    .then((res) => {
+      console.log(res)
+    })
+  })
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
