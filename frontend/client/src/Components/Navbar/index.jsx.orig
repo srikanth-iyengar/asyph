@@ -2,12 +2,26 @@ import React from 'react'
 import { Box } from '@mui/system'
 import { AppBar, Toolbar, Button, Typography} from '@mui/material'
 import Logo from "../../logo-transparent.png"
+<<<<<<< HEAD
+=======
 import { useState, useEffect } from 'react'
 import Api from "../../Api"
+>>>>>>> e97f701561698f16687d918a2719a6c06e54f6c2
+
 const pages = ["Home", "Contest", "Problemset", "Blog"]
 const options = ["Sign in", "Sign up"]
 
 const Index = () => {
+<<<<<<< HEAD
+=======
+  useEffect(() => {
+    Api.get("/user/lastest-blogs", {params: {limit: 10}})
+    .then((res) => {
+      console.log(res)
+    })
+  })
+  
+>>>>>>> e97f701561698f16687d918a2719a6c06e54f6c2
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
