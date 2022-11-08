@@ -12,6 +12,7 @@ import com.google.common.net.HttpHeaders;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 
 import reactor.core.publisher.Mono;
 
@@ -32,6 +33,8 @@ public class SecurityContextRepository implements ServerSecurityContextRepositor
     @Override
     public Mono load(ServerWebExchange swe) {
         ServerHttpRequest request = swe.getRequest();
+        ServerHttpResponse response = swe.getResponse();
+        response.getHeaders().set("Access-Control-Allow-Origin", "*");
         String authHeader = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
         String authToken = null;
         if (authHeader != null && authHeader.startsWith(TOKEN_PREFIX)) {
@@ -43,7 +46,6 @@ public class SecurityContextRepository implements ServerSecurityContextRepositor
             Mono mono = authenticationManager.authenticate(auth);
             Authentication authentication = (Authentication) mono.block();
             return Mono.just(new SecurityContextImpl(authentication));
-            // return authenticationManager.authenticate(auth).map((authentication) -> new SecurityContextImpl().setAuthentication(authentication));
         } else {
             return Mono.empty();
         }
