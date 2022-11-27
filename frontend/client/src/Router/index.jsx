@@ -9,14 +9,16 @@ import {
   useParams,
 }
   from "react-router-dom"
-
+import Navbar from "../Components/Navbar/index"
+import Contest from "../Features/Home/Contest"
 const Routes = () => {
   return (
     <Switch>
-      <Route path="/contest">
-        <h3>Contest List</h3>
+      <Route exact path="/contest">
+        <Navbar />
+        <Contest />
       </Route>
-      <Route path="/">
+      <Route exact path="/home">
         <Home />
       </Route>
     </Switch >

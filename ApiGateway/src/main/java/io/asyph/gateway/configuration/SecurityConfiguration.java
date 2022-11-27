@@ -35,6 +35,7 @@ public class SecurityConfiguration {
                     "/api/v1/Problems-Contest-Service/v3/api-docs/**",
                     "/api/v1/user/lastest-blogs/**",
                     "/api/v1/Problems-Contest-Service/get-contest-by-status/**"
+                    "/api/v1/Problems-Contest-Service/get-all-contest"
                     )
             .permitAll()
             .pathMatchers("/api/v1/user/admin/**").hasAuthority("ADMIN")
