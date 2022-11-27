@@ -18,6 +18,7 @@ const Index = () => {
               <Button
                 key={page}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                href={page.toLowerCase()}
               >
                 <Typography variant="body1">
                   {page}
